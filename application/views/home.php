@@ -9,7 +9,9 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Bicycle</title>
+  <title>Back-Office Management System | Rungkit</title>
+
+  <link rel="icon" href="common/img/130276.png" type="image/gif" sizes="16x16">
 
   <!-- Bootstrap CSS -->
   <link href="common/css/bootstrap.min.css" rel="stylesheet">
@@ -34,12 +36,69 @@
   <link href="common/css/style-responsive.css" rel="stylesheet" />
   <link href="common/css/xcharts.min.css" rel=" stylesheet">
   <link href="common/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="common/css/w3.css">
+
   <!-- =======================================================
     Theme Name: NiceAdmin
     Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
   ======================================================= -->
+
+  <style>
+    /* Center the loader */
+    #loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Add animation to "page content" */
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s
+    }
+
+    @-webkit-keyframes animatebottom {
+      from { bottom:-100px; opacity:0 } 
+      to { bottom:0px; opacity:1 }
+    }
+
+    @keyframes animatebottom { 
+      from{ bottom:-100px; opacity:0 } 
+      to{ bottom:0; opacity:1 }
+    }
+
+    #myDiv {
+      display: none;
+      text-align: center;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -53,16 +112,13 @@
     <section id="main-content">
       <section class="wrapper">
 
-        <div class="row">
-          <div class="text-center">
-            <h1>รุ่งกิจ</h1>
+       <body onload="myFunction()" style="margin:0;">
+
+          <div id="loader"></div>
+
+          <div style="display:none;" id="myDiv" class="animate-bottom">
+            <img src="common/img/animation-02.gif">
           </div>
-          
-          <div class="text-center">
-            <img src="common/img/animation.gif">
-          </div>
-          
-        </div>
 
       </section>
       
@@ -72,6 +128,20 @@
   <!-- container section start -->
 
   <!-- javascripts -->
+
+  <script>
+  var myVar;
+
+  function myFunction() {
+      myVar = setTimeout(showPage, 1500);
+  }
+
+  function showPage() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("myDiv").style.display = "block";
+  }
+  </script>
+
   <script src="common/js/jquery.js"></script>
   <script src="common/js/jquery-ui-1.10.4.min.js"></script>
   <script src="common/js/jquery-1.8.3.min.js"></script>
@@ -112,9 +182,6 @@
     <script src="common/js/sparklines.js"></script>
     <script src="common/js/charts.js"></script>
     <script src="common/js/jquery.slimscroll.min.js"></script>
-    
-    <script>
-    </script>
 
 </body>
 
