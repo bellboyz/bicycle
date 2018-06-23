@@ -60,9 +60,16 @@ class Billing extends CI_Controller {
 			'created_date' => date('d/m/Y')
 		);
 
-		// $this->db->insert('billing', $data);
+		$this->db->insert('billing', $data);
 
-		print_r($deposit);
+		$deposit = explode(',', $deposit);
+
+		for($i = 0; $i < sizeof($deposit); $i++){
+			$update_bill = array(
+				'bill_id' => $bill_id
+			);
+			$this->Deposit_model->update_bill($deposit[$i], $update_bill);
+		}
 		
 		// redirect('/billing');
 	}

@@ -26,4 +26,9 @@ class Deposit_model extends CI_Model {
         $query = $this->db->query('SELECT dep_id, price, created_date FROM deposit WHERE cus_id = ' . $cus_id . ' AND created_date BETWEEN "' . $start_date . '" AND "' . $end_date . '"');
         return $query->result();
     }
+
+    public function update_bill($dep_id, $data){
+        $this->db->where('dep_id', $dep_id);
+        $this->db->update('deposit', $data);
+    }
 }

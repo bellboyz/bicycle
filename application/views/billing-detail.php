@@ -97,14 +97,21 @@
       // $('#total').val().replace(/,/g, "").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
       $('button').click(function (){
-        console.log('<?php echo $deposit; ?>');
+        var deposit_array = <?php echo json_encode($deposit); ?>;
+        var deposit = [];
+
+        for(var i = 0; i < deposit_array.length; i++){
+          deposit.push(deposit_array[i].dep_id);
+        }
+
+        $('[name="deposit"]').val(deposit);
+
         $.ajax({
           url: '/billing/print_bill',
           type: 'post',
           data: $('form').serialize(),
           success: function(result){
-            console.log(result);
-            // window.location.href = '/billing';
+            window.location.href = '/billing';
           }
         });
       });
