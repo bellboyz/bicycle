@@ -16,7 +16,7 @@
 
         <div class="row">
           <div class="text-center">
-            <h1>Search</h1>
+            <h1>ค้นหา</h1>
           </div>
         </div>
         <form action="search/get" method="post">

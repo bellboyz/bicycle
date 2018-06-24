@@ -16,7 +16,7 @@
 
         <div class="row">
           <div class="text-center">
-            <h1>Report</h1>
+            <h1>รายงาน</h1>
           </div>
           
           <div class="text-center">

@@ -16,8 +16,8 @@
 
         <div class="row">
           <div class="text-center">
-            <button id="add-button" class="btn btn-info pull-right">เพิ่มสินค้า</button>
-            <h1>Stock</h1>
+            <button id="add-button" class="btn btn-info pull-right" style="margin-right: 15px;">เพิ่มสินค้า</button>
+            <h1>สต๊อกสินค้า</h1>
           </div>
 
           

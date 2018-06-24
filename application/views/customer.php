@@ -16,8 +16,8 @@
 
         <div class="row">
           <div class="text-center">
-            <button id="add-button" class="btn btn-info pull-right">เพิ่มสินค้า</button>
-            <h1>Customer</h1>
+            <button id="add-button" class="btn btn-info pull-right" style="margin-right: 15px;">เพิ่มลูกค้า</button>
+            <h1>รายชื่อลูกค้า</h1>
           </div>
 
           <div class="grid simple">
