@@ -30,37 +30,37 @@ class Deposit extends CI_Controller {
 
 		$location = $this->generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price);
 
-		for($i = 0; $i < sizeof($cus_id); $i++){
-			$data = array(
-				'dep_id' => $dep_id,
-				'cus_id' => $cus_id[$i],
-				'stock_id' => $stock_id[$i],
-				'number' => $number[$i],
-				'price_per_number' => $price_per_number[$i],
-				'price' => $price[$i],
-				// 'location' => $location,
-				'created_date' => date('d/m/Y')
-			);
+		// for($i = 0; $i < sizeof($cus_id); $i++){
+		// 	$data = array(
+		// 		'dep_id' => $dep_id,
+		// 		'cus_id' => $cus_id[$i],
+		// 		'stock_id' => $stock_id[$i],
+		// 		'number' => $number[$i],
+		// 		'price_per_number' => $price_per_number[$i],
+		// 		'price' => $price[$i],
+		// 		// 'location' => $location,
+		// 		'created_date' => date('d/m/Y')
+		// 	);
 
-			if($this->db->insert('deposit', $data)){
-				$stock = $this->Stock_model->get_stock($stock_id[$i]);
-				$stock[0]->number -= $number[$i];
+		// 	if($this->db->insert('deposit', $data)){
+		// 		$stock = $this->Stock_model->get_stock($stock_id[$i]);
+		// 		$stock[0]->number -= $number[$i];
 
-				$update_stock = array(
-					'number' => $stock[0]->number
-				);
+		// 		$update_stock = array(
+		// 			'number' => $stock[0]->number
+		// 		);
 
-				$this->Stock_model->update($stock_id[$i], $update_stock);
+		// 		$this->Stock_model->update($stock_id[$i], $update_stock);
 
-				$result = true;
-			}
-			else{
-				$result = false;
-			}
-		}
+		// 		$result = true;
+		// 	}
+		// 	else{
+		// 		$result = false;
+		// 	}
+		// }
 
-		if($result) echo true;
-		else echo false;
+		// if($result) echo true;
+		// else echo false;
 	}
 
 	private function generate_depID($num){

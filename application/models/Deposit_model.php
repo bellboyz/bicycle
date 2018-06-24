@@ -31,4 +31,23 @@ class Deposit_model extends CI_Model {
         $this->db->where('dep_id', $dep_id);
         $this->db->update('deposit', $data);
     }
+
+    public function seart_deposit($bill_id, $cus_id, $start_date, $end_date){
+        $this->db->from('deposit');
+        $this->db->where('cus_id', $cus_id);
+        if($bill_id != ''){
+            $this->db->where('bill_id', $bill_id);
+        }
+        if($start_date != '' && $end_date != ''){
+            $this->db->where('created_date BETWEEN "' . $start_date . '" AND "' . $end_date . '"');
+        }
+        else if($start_date != '' && $end_date == ''){
+            $this->db->where('created_date >=', $start_date);
+        }
+        else if($start_date == '' && $end_date != ''){
+            $this->db->where('created_date <=', $end_date);
+        }
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
