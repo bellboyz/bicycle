@@ -52,30 +52,30 @@
               <label>เลขที่ใบวางบิล / ใบฝากสินค้า</label>
             </div>
             <div class="col-md-9">
-              <input type="text" id="id" name="id" class="form-control" required min="0">
+              <input type="text" id="id" name="id" class="form-control" min="0">
             </div>
 
             <div class="col-md-3">
               <label>ตั้งแต่วันที่</label>
             </div>
             <div class="col-md-9">
-              <input type="text" class="form-control date" name="start_date" required autocomplete="off">
+              <input type="text" class="form-control date" name="start_date" autocomplete="off">
             </div>
 
             <div class="col-md-3">
               <label>ถึงวันที่</label>
             </div>
             <div class="col-md-9">
-              <input type="text" class="form-control date" name="end_date" required autocomplete="off">
+              <input type="text" class="form-control date" name="end_date" autocomplete="off">
             </div>
           </div>
+          <button id="search" type="submit" class="btn btn-success" style="width: 100%;">ค้นหา</button>
         </form>
 
       </section>
 
     </section>
     <!--main content end-->
-    <button id="search" class="btn btn-success" style="width: 100%;">แสดงบิล</button>
   </section>
   <!-- container section start -->
 
@@ -89,14 +89,14 @@
         todayHighlight: true
       });
 
-      $('#search').click(function(){
-        $.ajax({
-          url: 'search/get',
-          type: 'post',
-          data: $('form').serialize(),
-          success: function(result){}
-        });
-      });
+      // $('#search').click(function(){
+      //   $.ajax({
+      //     url: 'search/get',
+      //     type: 'post',
+      //     data: $('form').serialize(),
+      //     success: function(result){}
+      //   });
+      // });
     });
   </script>
 

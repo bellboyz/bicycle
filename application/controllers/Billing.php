@@ -40,7 +40,8 @@ class Billing extends CI_Controller {
 			'customer' => $customer,
 			'start_date' => $start_date,
 			'end_date' => $end_date,
-			'deposit' => $result
+			'deposit' => $result,
+			'search' => false
 		);
 
 		$this->load->view('billing-detail', $data);

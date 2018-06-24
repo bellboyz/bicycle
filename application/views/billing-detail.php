@@ -22,7 +22,14 @@
         <div class="row">
           <div class="text-center">
             <h1>Billing</h1>
-            <?= $date; ?>
+            <?php
+              if($search == false) echo $date;
+              else{
+                if($start_date && $end_date) echo 'ตั้งแต่วันที่ ' . $start_date . ' ถึงวันที่ ' . $end_date;
+                else if($start_date && !$end_date) echo 'ตั้งแต่วันที่ ' . $start_date;
+                else if(!$start_date && $end_date) echo 'ถึงวันที่ ' . $end_date;
+              }
+            ?>
             <br>
             <?= $bill_id; ?>
           </div>
@@ -85,18 +92,27 @@
       <input type="hidden" name="start_date" value="<?= $start_date; ?>">
       <input type="hidden" name="end_date" value="<?= $end_date; ?>">
       <input type="hidden" name="bill_id" value="<?= $bill_id; ?>">
+      <?php if($search == false){ ?>
       <input type="hidden" name="date" value="<?= $date; ?>">
+      <?php } else { ?>
+      <input type="hidden" name="start_date" value="<?= $start_date; ?>">
+      <input type="hidden" name="end_date" value="<?= $end_date; ?>">
+      <?php } ?>
       <input type="hidden" name="deposit">
     </form>
 
-    <button class="btn btn-primary" style="width: 100%">ปริ้นใวางบิล</button>
+    <?php if($search == false){ ?>
+    <button id="print" class="btn btn-primary" style="width: 100%">ปริ้นใวางบิล</button>
+    <?php } else { ?>
+    <button id="search_print" class="btn btn-primary" style="width: 100%">ปริ้นใวางบิล</button>      
+    <?php } ?>
 
     <?php include('include/jsfooter.php') ?>
 
     <script>
       // $('#total').val().replace(/,/g, "").replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 
-      $('button').click(function (){
+      $('#print').click(function (){
         var deposit_array = <?php echo json_encode($deposit); ?>;
         var deposit = [];
 
