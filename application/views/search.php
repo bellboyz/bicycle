@@ -68,8 +68,9 @@
             <div class="col-md-9">
               <input type="text" class="form-control date" name="end_date" autocomplete="off">
             </div>
+            <button id="search" type="submit" class="btn btn-success" style="width: 100%; margin-top: 20px;">ค้นหา</button>
           </div>
-          <button id="search" type="submit" class="btn btn-success" style="width: 100%;">ค้นหา</button>
+          
         </form>
 
       </section>
