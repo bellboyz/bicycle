@@ -3,7 +3,7 @@
 
 <?php include('include/jscss.php') ?>
 
-<body class="w3-container w3-center w3-animate-opacity">
+<body class="w3-container w3-animate-opacity">
   <!-- container section start -->
   <section id="container" class="">
 
