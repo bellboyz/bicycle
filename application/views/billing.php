@@ -16,7 +16,7 @@
 
         <div class="row">
           <div class="text-center">
-            <h1>Billing</h1>
+            <h1>ใบวางบิล</h1>
             <?= $date; ?>
             <br>
             <?= $bill_id; ?>

@@ -16,7 +16,7 @@
 
         <div class="row">
           <div class="text-center">
-            <h1>สร้างใบรับฝากสินค้า</h1>
+            <h1>ใบรับฝากสินค้า</h1>
             <?= $date; ?>
             <br>
             <?= $dep_id; ?>
