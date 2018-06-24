@@ -32,11 +32,13 @@ class Deposit_model extends CI_Model {
         $this->db->update('deposit', $data);
     }
 
-    public function seart_deposit($bill_id, $cus_id, $start_date, $end_date){
+    public function search_deposit($id, $cus_id, $start_date, $end_date, $check){
+        if($check == 'deposit') $this->db->select('dep_id, sum(price) as total');
         $this->db->from('deposit');
         $this->db->where('cus_id', $cus_id);
-        if($bill_id != ''){
-            $this->db->where('bill_id', $bill_id);
+        if($id != ''){
+            if($check == 'deposit') $this->db->where('dep_id', $id);
+            else $this->db->where('bill_id', $id);
         }
         if($start_date != '' && $end_date != ''){
             $this->db->where('created_date BETWEEN "' . $start_date . '" AND "' . $end_date . '"');
@@ -47,6 +49,7 @@ class Deposit_model extends CI_Model {
         else if($start_date == '' && $end_date != ''){
             $this->db->where('created_date <=', $end_date);
         }
+        if($check == 'deposit') $this->db->group_by('dep_id');
         $query = $this->db->get();
         return $query->result();
     }

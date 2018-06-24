@@ -90,6 +90,10 @@
         todayHighlight: true
       });
 
+      $('[name="check"]').change(function(){
+        $('[name="id"]').val('');
+      });
+
       // $('#search').click(function(){
       //   $.ajax({
       //     url: 'search/get',

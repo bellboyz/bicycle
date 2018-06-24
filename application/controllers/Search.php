@@ -18,19 +18,11 @@ class Search extends CI_Controller {
 		$start_date = $this->input->post('start_date');
 		$end_date = $this->input->post('end_date');
 
-		$data = array(
-			'cus_id' => $cus_id,
-			'check' => $check,
-			'id' => $id,
-			'start_date' => $start_date,
-			'end_date' => $end_date
-		);
+		$customer = $this->Customer_model->get_customer($cus_id);
 
 		if($check == 'bill'){
 			if($id){
-				$customer = $this->Customer_model->get_customer($cus_id);
-
-				$deposit = $this->Deposit_model->seart_deposit($id, $cus_id, $start_date, $end_date);
+				$deposit = $this->Deposit_model->search_deposit($id, $cus_id, $start_date, $end_date, $check);
 
 				for($i = 0; $i < sizeof($deposit); $i++){
 					$deposit[$i]->created_date = $this->get_format_date($deposit[$i]->created_date);
@@ -48,7 +40,6 @@ class Search extends CI_Controller {
 				$this->load->view('billing-detail', $data);
 			}
 			else{
-				$customer = $this->Customer_model->get_customer($cus_id);
 				$billing = $this->Billing_model->search_billing($cus_id, $start_date, $end_date);
 
 				$data = array(
@@ -63,7 +54,17 @@ class Search extends CI_Controller {
 			}
 		}
 		else if($check == 'deposit'){
-			//
+			$deposit = $this->Deposit_model->search_deposit($id, $cus_id, $start_date, $end_date, $check);
+
+			$data = array(
+				'deposit' => $deposit,
+				'customer' => $customer,
+				'start_date' => $this->get_format_date($start_date),
+				'end_date' => $this->get_format_date($end_date),
+				'type' => 'deposit'
+			);
+
+			$this->load->view('search-all', $data);
 		}
 		else{}
 	}
