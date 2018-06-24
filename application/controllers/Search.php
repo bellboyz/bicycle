@@ -47,7 +47,20 @@ class Search extends CI_Controller {
 
 				$this->load->view('billing-detail', $data);
 			}
-			else{}
+			else{
+				$customer = $this->Customer_model->get_customer($cus_id);
+				$billing = $this->Billing_model->search_billing($cus_id, $start_date, $end_date);
+
+				$data = array(
+					'billing' => $billing,
+					'customer' => $customer,
+					'start_date' => $this->get_format_date($start_date),
+					'end_date' => $this->get_format_date($end_date),
+					'type' => 'billing'
+				);
+				
+				$this->load->view('search-all', $data);
+			}
 		}
 		else if($check == 'deposit'){
 			//

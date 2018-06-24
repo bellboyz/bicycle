@@ -21,4 +21,23 @@ class Billing_model extends CI_Model {
         if($query->num_rows() > 0) return true;
         else return false;
     }
+
+    public function search_billing($cus_id, $start_date, $end_date){
+        $this->db->select('b.bill_id, sum(d.price) as total');
+        $this->db->from('billing b');
+        $this->db->join('deposit d', 'b.bill_id = d.bill_id');
+        $this->db->where('b.cus_id', $cus_id);
+        if($start_date != '' && $end_date != ''){
+            $this->db->where('b.created_date BETWEEN "' . $start_date . '" AND "' . $end_date . '"');
+        }
+        else if($start_date != '' && $end_date == ''){
+            $this->db->where('b.created_date >=', $start_date);
+        }
+        else if($start_date == '' && $end_date != ''){
+            $this->db->where('b.created_date <=', $end_date);
+        }
+        $this->db->group_by('b.bill_id');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

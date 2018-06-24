@@ -52,7 +52,7 @@
               <label>เลขที่ใบวางบิล / ใบฝากสินค้า</label>
             </div>
             <div class="col-md-9">
-              <input type="text" id="id" name="id" class="form-control" min="0">
+              <input type="text" id="id" name="id" class="form-control">
             </div>
 
             <div class="col-md-3">
