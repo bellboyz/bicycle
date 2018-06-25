@@ -37,6 +37,7 @@
   <link href="common/css/xcharts.min.css" rel=" stylesheet">
   <link href="common/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
   <link rel="stylesheet" href="common/css/w3.css">
+  <link rel="stylesheet" type="text/css" href="common/css/hover.css">
 
   <!-- =======================================================
     Theme Name: NiceAdmin
@@ -97,6 +98,16 @@
       display: none;
       text-align: center;
     }
+
+    .home-icon{
+      width: 200px; 
+      height: 200px;
+      display: inline;
+      padding: 20px;
+    }
+    p{
+      font-size: 22px;
+      color: black
   </style>
 
 </head>
@@ -117,7 +128,54 @@
           <div id="loader"></div>
 
           <div style="display:none;" id="myDiv" class="animate-bottom">
-            <img src="common/img/animation-02.gif">
+            <center><h3>WELCOME BACK ! </h3>
+              <!-- <br> <?php echo date("l jS \of F Y h:i:s A") ?> </center>  --><br><br>
+           <!--  <img src="common/img/animation-02.gif"> -->
+            <div class="col-md-3">
+              <a href="/stock" class="hvr-float">
+                <img src="common/img/stock.png" class="home-icon" style="background-color: #cab6c7;">
+                <center><p>สต๊อกสินค้า</p></center>
+              </a>
+            </div>
+
+            <div class="col-md-3">
+              <a href="/customer" class="hvr-float">
+                <img src="common/img/customer.png" class="home-icon" style="background-color: #54c79c;">
+                <center><p>ลูกค้า</p></center>
+              </a>
+            </div>
+
+            <div class="col-md-3">
+              <a href="/deposit" class="hvr-float">
+                <img src="common/img/deposit.png" class="home-icon" style="background-color: #db5b96;">
+                <center><p>ใบฝากสินค้า</p></center>
+              </a>
+            </div>
+
+            <div class="col-md-3">
+              <a href="/billing" class="hvr-float">
+                <img src="common/img/billing.png" class="home-icon" style="background-color: #dcf414;">
+                <center><p>ใบวางบิล</p></center>
+              </a>
+            </div>
+
+            <br><br>
+
+            <div class="col-md-3">
+              <a href="/report" class="hvr-float">
+                <img src="common/img/report.png" class="home-icon" style="background-color: #7c87d9;">
+                <center><p>รายงาน</p></center>
+              </a>
+            </div>
+
+            <div class="col-md-3">
+              <a href="/search" class="hvr-float">
+                <img src="common/img/search.png" class="home-icon" style="background-color: #9ef2b4;">
+                <center><p>ค้นหา</p></center>
+              </a>
+            </div>
+
+
           </div>
 
       </section>
