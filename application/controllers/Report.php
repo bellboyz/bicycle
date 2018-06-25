@@ -18,6 +18,12 @@ class Report extends CI_Controller {
 
 		if($check === 'report_stock'){
 			$stock_add = $this->Stock_model->get_report_stock($stock_id, $start_date, $end_date);
+			$data = array(
+				'report' => 'stock',
+				'stock' => $stock_add
+			);
+
+			$this->load->view('a4-template', $data);
 		}
 		else if($check === 'report_deposit'){}
 		else if($check === 'report_customer'){}

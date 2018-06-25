@@ -44,6 +44,21 @@ class Stock_model extends CI_Model {
     }
 
     public function get_report_stock($stock_id, $start_date, $end_date){
-        //
+        $this->db->select('s.id, s.product, s.color, s.unit, sum(a.number) as total_number');
+        $this->db->from('stock s');
+        $this->db->join('stock_add a', 's.id = a.stock_id');
+        $this->db->where('a.stock_id', $stock_id);
+        if($start_date != '' && $end_date != ''){
+            $this->db->where('a.created_date BETWEEN "' . $start_date . '" AND "' . $end_date . '"');
+        }
+        else if($start_date != '' && $end_date == ''){
+            $this->db->where('a.created_date >=', $start_date);
+        }
+        else if($start_date == '' && $end_date != ''){
+            $this->db->where('a.created_date <=', $end_date);
+        }
+        $this->db->group_by('a.stock_id');
+        $query = $this->db->get();
+        return $query->result();
     }
 }
