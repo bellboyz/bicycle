@@ -111,7 +111,8 @@ class Stock extends CI_Controller {
 
 		$data = array(
 			'stock_id' => $id,
-			'number' => $number
+			'number' => $number,
+			'created_date' => date('d/m/Y')
 		);
 
 		if($this->db->insert('stock_add', $data)){
