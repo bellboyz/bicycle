@@ -47,7 +47,9 @@ class Stock_model extends CI_Model {
         $this->db->select('s.id, s.product, s.color, s.unit, sum(a.number) as total_number');
         $this->db->from('stock s');
         $this->db->join('stock_add a', 's.id = a.stock_id');
-        $this->db->where('a.stock_id', $stock_id);
+        if($stock_id != ''){
+            $this->db->where('a.stock_id', $stock_id);
+        }
         if($start_date != '' && $end_date != ''){
             $this->db->where('a.created_date BETWEEN "' . $start_date . '" AND "' . $end_date . '"');
         }

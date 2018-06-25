@@ -53,6 +53,7 @@
             </div>
             <div class="col-md-9">
               <select class="form-control js-example-basic-single" id="stock" name="stock">
+                <option value=""></option>
                 <?php 
                 foreach($stock as $st){
                   echo '<option product="' . $st->product . '" color="' . $st->color . '" value="' . $st->id . '" unit="' . $st->unit . '" number="' . $st->number . '">' . $st->product . ' สี' . $st->color . '  (มีสต๊อก ' . $st->number . ' ' . $st->unit . ')' . '</option>';
