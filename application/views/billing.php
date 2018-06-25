@@ -3,7 +3,16 @@
 
 <?php include('include/jscss.php') ?>
 
-<body class="w3-container w3-animate-opacity">
+<style type="text/css">
+  #picture{
+      background-image: url("common/img/billing.png");
+      background-repeat: no-repeat;
+      background-position: 1300px 450px;
+      background-size: 200px 200px;
+    } 
+</style>
+
+<body class="w3-container w3-animate-opacity" id="picture">
   <!-- container section start -->
   <section id="container" class="">
 

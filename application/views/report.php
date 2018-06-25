@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style type="text/css">
+  #picture{
+      background-image: url("common/img/report.png");
+      background-repeat: no-repeat;
+      background-position: 1300px 450px;
+      background-size: 200px 200px;
+    } 
+</style>
+
 <?php include('include/jscss.php') ?>
 
-<body class="w3-container w3-animate-opacity">
+<body class="w3-container w3-animate-opacity" id="picture">
   <!-- container section start -->
   <section id="container" class="">
 
