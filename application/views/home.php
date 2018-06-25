@@ -108,11 +108,20 @@
     p{
       font-size: 22px;
       color: black
+    }
+
+    #picture{
+      background-image: url("common/img/animation-02.gif");
+      background-repeat: no-repeat;
+      background-position: 950px 375px;
+      background-size: 450px 300px;
+    } 
+       
   </style>
 
 </head>
 
-<body>
+<body id="picture">
   <!-- container section start -->
   <section id="container" class="">
 
@@ -130,7 +139,7 @@
           <div style="display:none;" id="myDiv" class="animate-bottom">
             <center><h3>WELCOME BACK ! </h3>
               <!-- <br> <?php echo date("l jS \of F Y h:i:s A") ?> </center>  --><br><br>
-           <!--  <img src="common/img/animation-02.gif"> -->
+           <!--  <img src=""> -->
             <div class="col-md-3">
               <a href="/stock" class="hvr-float">
                 <img src="common/img/stock.png" class="home-icon" style="background-color: #cab6c7;">
