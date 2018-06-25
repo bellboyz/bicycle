@@ -1,7 +1,6 @@
     <?php
       $request_uri = explode('/', $_SERVER['REQUEST_URI']);
     ?>
-
     <!--sidebar start-->
     <aside>
       <div id="sidebar" class="nav-collapse ">
