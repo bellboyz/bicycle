@@ -42,4 +42,8 @@ class Stock_model extends CI_Model {
             return false;
         }
     }
+
+    public function get_report_stock($stock_id, $start_date, $end_date){
+        //
+    }
 }
