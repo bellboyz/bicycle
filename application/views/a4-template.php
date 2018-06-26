@@ -106,48 +106,37 @@
 				</table>
 			<?php } else if($report === 'deposit') { ?>
 				<h1><center>รายงานยอดการขาย</center></h1>
-				<?php $name = ''; ?>
-				<?php foreach ($deposit as $d) { ?>
-					<?php if($name == '' || $name != $d->name){ ?>
-						<h3><center><?= $d->name; ?></center></h3>
-						<?php $name = $d->name;?>
-						<h3><center>
-						<?php
-						$date = 1;
-						if($date === 1){
-							if($start_date && $end_date) echo 'ตั้งแต่วันที่ ' . $start_date . ' ถึงวันที่ ' . $end_date;
-							else if($start_date && !$end_date) echo 'ตั้งแต่วันที่ ' . $start_date;
-							else if(!$start_date && $end_date) echo 'ถึงวันที่ ' . $end_date;
-						}
-						$date++;
-						?>
-						</center></h3>
-						<table id="table">
-							<thead>
-								<tr>
-									<th><center>ลำดับ</center></th>
-									<th><center>ชื่อสินค้า</center></th>
-									<th><center>สี</center></th>
-									<th><center>ยอดขาย</center></th>
-									<th><center>ยอดรวม</center></th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php $i = 1; ?>
-								<?php foreach ($deposit as $d) { ?>
-									<tr>
-										<td><center><?= $i; ?></center></td>
-										<td><center><?= $d->product; ?></center></td>
-										<td><center><?= $d->color; ?></center></td>
-										<td><center><?= number_format($d->number); ?></center></td>
-										<td><center><?= number_format($d->price); ?></center></td>
-									</tr>
-									<?php $i++; ?>
-								<?php } ?>
-							</tbody>
-						</table>
-					<?php } ?>
-				<?php } ?>
+				<h3><center>
+				<?php
+				if($start_date && $end_date) echo 'ตั้งแต่วันที่ ' . $start_date . ' ถึงวันที่ ' . $end_date;
+				else if($start_date && !$end_date) echo 'ตั้งแต่วันที่ ' . $start_date;
+				else if(!$start_date && $end_date) echo 'ถึงวันที่ ' . $end_date;
+				?>
+				</center></h3>
+				<table id="table">
+					<thead>
+						<tr>
+							<th><center>ลำดับ</center></th>
+							<th><center>ชื่อสินค้า</center></th>
+							<th><center>สี</center></th>
+							<th><center>ยอดขาย</center></th>
+							<th><center>ยอดรวม</center></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $i = 1; ?>
+						<?php foreach ($deposit as $d) { ?>
+							<tr>
+								<td><center><?= $i; ?></center></td>
+								<td><center><?= $d->product; ?></center></td>
+								<td><center><?= $d->color; ?></center></td>
+								<td><center><?= number_format($d->number); ?></center></td>
+								<td><center><?= number_format($d->price); ?></center></td>
+							</tr>
+							<?php $i++; ?>
+						<?php } ?>
+					</tbody>
+				</table>
 			<?php } ?>
 		</div>
 	</div>

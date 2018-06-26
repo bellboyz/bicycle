@@ -113,7 +113,7 @@
       });
 
       $('[name="check"]').change(function(){
-        if($(this).val() == 'report_deposit' || $(this).val() == 'report_customer'){
+        if($(this).val() == 'report_customer'){
           $('#customer_div').show();
         }
         else{
@@ -121,7 +121,7 @@
         }
       });
       
-      if($('[name="check"]').val() == 'report_deposit' || $('[name="check"]').val() == 'report_customer'){
+      if($('[name="check"]').val() == 'report_customer'){
         $('#customer_div').show();
       }
       else{

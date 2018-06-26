@@ -30,7 +30,7 @@ class Report extends CI_Controller {
 			$this->load->view('a4-template', $data);
 		}
 		else if($check === 'report_deposit'){
-			$deposit = $this->Deposit_model->get_report_deposit($cus_id, $stock_id, $start_date, $end_date);
+			$deposit = $this->Deposit_model->get_report_deposit($stock_id, $start_date, $end_date);
 			$data = array(
 				'report' => 'deposit',
 				'deposit' => $deposit,
