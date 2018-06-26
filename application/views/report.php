@@ -5,8 +5,8 @@
   #picture{
     background-image: url("common/img/report.png");
     background-repeat: no-repeat;
-    background-position: 1300px 450px;
-    background-size: 200px 200px;
+    background-position: 1100px 430px;
+      background-size: 200px 200px;
   } 
 </style>
 
