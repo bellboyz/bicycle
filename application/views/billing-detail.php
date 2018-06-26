@@ -62,7 +62,7 @@
                     <td><center>' . $i . '</center></td>
                     <td><center>' . $dep->dep_id . '</center></td>
                     <td><center>' . $dep->created_date . '</center></td>
-                    <td><center>' . $dep->price . '</center></td>
+                    <td><center>' . number_format($dep->price) . '</center></td>
                   </tr>
                   ';
                   $total += $dep->price;
@@ -74,7 +74,7 @@
             <br>
             <div class="pull-right">
               <label>รวม</label>
-              <input type="text" id="total" value="<?= $total; ?>" readonly>
+              <input type="text" id="total" value="<?= number_format($total); ?>" readonly>
               <input type="hidden" name="total" value="<?= $total; ?>">
             </div>
 

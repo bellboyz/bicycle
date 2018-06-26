@@ -53,4 +53,27 @@ class Deposit_model extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function get_report_deposit($cus_id, $stock_id, $start_date, $end_date){
+        $this->db->select('c.name, s.product, s.color, s.unit, sum(d.number) as number, sum(d.price) as price');
+        $this->db->from('deposit d');
+        $this->db->join('stock s', 'd.stock_id = s.id');
+        $this->db->join('customer c', 'd.cus_id = c.id');
+        $this->db->where('d.cus_id', $cus_id);
+        if($stock_id != ''){
+            $this->db->where('d.stock_id', $stock_id);
+        }
+        if($start_date != '' && $end_date != ''){
+            $this->db->where('d.created_date BETWEEN "' . $start_date . '" AND "' . $end_date . '"');
+        }
+        else if($start_date != '' && $end_date == ''){
+            $this->db->where('d.created_date >=', $start_date);
+        }
+        else if($start_date == '' && $end_date != ''){
+            $this->db->where('d.created_date <=', $end_date);
+        }
+        $this->db->group_by('d.cus_id, d.stock_id');
+        $query = $this->db->get();
+        return $query->result();
+    }
 }

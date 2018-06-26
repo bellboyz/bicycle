@@ -3,11 +3,11 @@
 
 <style type="text/css">
   #picture{
-      background-image: url("common/img/report.png");
-      background-repeat: no-repeat;
-      background-position: 1300px 450px;
-      background-size: 200px 200px;
-    } 
+    background-image: url("common/img/report.png");
+    background-repeat: no-repeat;
+    background-position: 1300px 450px;
+    background-size: 200px 200px;
+  } 
 </style>
 
 <?php include('include/jscss.php') ?>
@@ -46,6 +46,21 @@
                 <input type="radio" name="check" value="report_customer">
                 ยอดการสั่งซื้อของลูกค้า
               </label>
+            </div>
+
+            <div id="customer_div" style="display: none;">
+              <div class="col-md-3">
+                <label>นามลูกค้า</label>
+              </div>
+              <div class="col-md-9">
+                <select class="form-control js-example-basic-single" id="customer" name="customer">
+                  <?php 
+                  foreach($customer as $cus){
+                    echo '<option value="' . $cus->id . '">' . $cus->name . '</option>';
+                  }
+                  ?>
+                </select>
+              </div>
             </div>
 
             <div class="col-md-3">
@@ -98,7 +113,12 @@
       });
 
       $('[name="check"]').change(function(){
-        $('[name="id"]').val('');
+        if($(this).val() == 'report_deposit' || $(this).val() == 'report_customer'){
+          $('#customer_div').show();
+        }
+        else{
+          $('#customer_div').hide();
+        }
       });
 
       // $('#search').click(function(){

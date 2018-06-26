@@ -45,14 +45,14 @@
 	}
 
 	#table {
-	    /*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
-	    border-collapse: collapse;
-	    width: 100%;
+		/*font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+		border-collapse: collapse;
+		width: 100%;
 	}
 
 	#table td, #table th {
-	    border: 1px solid #ddd;
-	    padding: 8px;
+		border: 1px solid #ddd;
+		padding: 8px;
 	}
 
 	/*#table tr:nth-child(even){background-color: #f2f2f2;}*/
@@ -60,11 +60,11 @@
 	/*#table tr:hover {background-color: #ddd;}*/
 
 	#table th {
-	    padding-top: 12px;
-	    padding-bottom: 12px;
-	    /*text-align: left;*/
-	    /*background-color: #4CAF50;*/
-	    /*color: white;*/
+		padding-top: 12px;
+		padding-bottom: 12px;
+		/*text-align: left;*/
+		/*background-color: #4CAF50;*/
+		/*color: white;*/
 	}
 </style>
 
@@ -73,6 +73,13 @@
 		<div class="page">
 			<?php if($report === 'stock'){ ?>
 				<h1><center>รายงานยอดการผลิต</center></h1>
+				<h3><center>
+				<?php
+				if($start_date && $end_date) echo 'ตั้งแต่วันที่ ' . $start_date . ' ถึงวันที่ ' . $end_date;
+				else if($start_date && !$end_date) echo 'ตั้งแต่วันที่ ' . $start_date;
+				else if(!$start_date && $end_date) echo 'ถึงวันที่ ' . $end_date;
+				?>
+				</center></h3>
 				<table id="table">
 					<thead>
 						<tr>
@@ -90,13 +97,57 @@
 								<td><center><?= $i; ?></center></td>
 								<td><center><?= $s->product; ?></center></td>
 								<td><center><?= $s->color; ?></center></td>
-								<td><center><?= $s->total_number; ?></center></td>
+								<td><center><?= number_format($s->total_number); ?></center></td>
 								<td><center><?= $s->unit; ?></center></td>
 							</tr>
 							<?php $i++; ?>
 						<?php } ?>
 					</tbody>
 				</table>
+			<?php } else if($report === 'deposit') { ?>
+				<h1><center>รายงานยอดการขาย</center></h1>
+				<?php $name = ''; ?>
+				<?php foreach ($deposit as $d) { ?>
+					<?php if($name == '' || $name != $d->name){ ?>
+						<h3><center><?= $d->name; ?></center></h3>
+						<?php $name = $d->name;?>
+						<h3><center>
+						<?php
+						$date = 1;
+						if($date === 1){
+							if($start_date && $end_date) echo 'ตั้งแต่วันที่ ' . $start_date . ' ถึงวันที่ ' . $end_date;
+							else if($start_date && !$end_date) echo 'ตั้งแต่วันที่ ' . $start_date;
+							else if(!$start_date && $end_date) echo 'ถึงวันที่ ' . $end_date;
+						}
+						$date++;
+						?>
+						</center></h3>
+						<table id="table">
+							<thead>
+								<tr>
+									<th><center>ลำดับ</center></th>
+									<th><center>ชื่อสินค้า</center></th>
+									<th><center>สี</center></th>
+									<th><center>ยอดขาย</center></th>
+									<th><center>ยอดรวม</center></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php $i = 1; ?>
+								<?php foreach ($deposit as $d) { ?>
+									<tr>
+										<td><center><?= $i; ?></center></td>
+										<td><center><?= $d->product; ?></center></td>
+										<td><center><?= $d->color; ?></center></td>
+										<td><center><?= number_format($d->number); ?></center></td>
+										<td><center><?= number_format($d->price); ?></center></td>
+									</tr>
+									<?php $i++; ?>
+								<?php } ?>
+							</tbody>
+						</table>
+					<?php } ?>
+				<?php } ?>
 			<?php } ?>
 		</div>
 	</div>
