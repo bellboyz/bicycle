@@ -105,7 +105,7 @@
   <?php include('include/jsfooter.php') ?>
   
   <script>
-    $(document).ready(function(){ 
+    $(document).ready(function(){
       $('.date').datepicker({
         autoclose: true,
         format: 'dd/mm/yyyy',
@@ -120,6 +120,13 @@
           $('#customer_div').hide();
         }
       });
+      
+      if($('[name="check"]').val() == 'report_deposit' || $('[name="check"]').val() == 'report_customer'){
+        $('#customer_div').show();
+      }
+      else{
+        $('#customer_div').hide();
+      }
 
       // $('#search').click(function(){
       //   $.ajax({
