@@ -28,7 +28,7 @@
             <h1>รายงาน</h1>
           </div>
         </div>
-        <form action="report/get" method="post">
+        <form action="report/get" method="post" target="_blank">
           <div class="col-md-12">
             <div class="col-md-3">
               <label>ค้นหารายงาน</label>
