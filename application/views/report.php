@@ -54,6 +54,7 @@
               </div>
               <div class="col-md-9">
                 <select class="form-control js-example-basic-single" id="customer" name="customer">
+                  <option value=""></option>
                   <?php 
                   foreach($customer as $cus){
                     echo '<option value="' . $cus->id . '">' . $cus->name . '</option>';

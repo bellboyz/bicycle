@@ -40,7 +40,17 @@ class Report extends CI_Controller {
 			
 			$this->load->view('a4-template', $data);
 		}
-		else if($check === 'report_customer'){}
+		else if($check === 'report_customer'){
+			$billing = $this->Billing_model->get_report_billing($cus_id, $stock_id, $start_date, $end_date);
+			$data = array(
+				'report' => 'billing',
+				'billing' => $billing,
+				'start_date' => $start_date,
+				'end_date' => $end_date
+			);
+			
+			$this->load->view('a4-template', $data);
+		}
 		else{}
 	}
 }

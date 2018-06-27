@@ -137,6 +137,37 @@
 						<?php } ?>
 					</tbody>
 				</table>
+			<?php } else if($report === 'billing'){ ?>
+				<h1><center>รายงานยอดการสั่งซื้อ</center></h1>
+				<?php $name = ''; ?>
+				<?php foreach ($billing as $bill) { ?>
+					<?php if($name !== $bill->name) { ?>
+					<?php $name = $bill->name; ?>
+						<h3>นามลูกค้า : <?= $name; ?></h3>
+						<table id="table">
+							<thead>
+								<tr>
+									<th><center>ลำดับ</center></th>
+									<th><center>เลขที่บิล</center></th>
+									<th><center>ราคารวม</center></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php $i = 1; ?>
+								<?php foreach ($billing as $b) { ?>
+									<?php if($name === $b->name){ ?>
+										<tr>
+											<td><center><?= $i; ?></center></td>
+											<td><center><?= $b->bill_id; ?></center></td>
+											<td><center><?= number_format($b->price); ?></center></td>
+										</tr>
+									<?php } ?>
+									<?php $i++; ?>
+								<?php } ?>
+							</tbody>
+						</table>
+					<?php } ?>
+				<?php } ?>
 			<?php } ?>
 		</div>
 	</div>
