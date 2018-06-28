@@ -113,7 +113,7 @@
     #picture{
       background-image: url("common/img/animation-02.gif");
       background-repeat: no-repeat;
-      background-position: 950px 375px;
+      background-position: 1100px 420px;
       background-size: 450px 300px;
     } 
        

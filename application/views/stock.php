@@ -5,7 +5,7 @@
   #picture{
       background-image: url("common/img/stock.png");
       background-repeat: no-repeat;
-      background-position: 1100px 430px;
+      background-position: 1300px 500px;
       background-size: 200px 200px;
       
     } 
