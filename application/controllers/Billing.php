@@ -71,8 +71,6 @@ class Billing extends CI_Controller {
 			);
 			$this->Deposit_model->update_bill($deposit[$i], $update_bill);
 		}
-		
-		// redirect('/billing');
 	}
 
 	private function generate_Bill_ID($num){

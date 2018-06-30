@@ -176,7 +176,7 @@ class Deposit extends CI_Controller {
 		    	<table>
 					<tbody>
 						<tr>
-							<td rowspan="2"> </td>
+							<td rowspan="2"></td>
 							<td><center>เลขที่</center></td>
 						</tr>
 						<tr>
@@ -196,14 +196,14 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 10%;">นาม : </td>
-							<td style="width: 60%;">' . $customer[0]->name . '</td>
-							<td style="width: 10%;">วันที่ : </td>
-							<td style="width: 20%;">15 มกราคม 2561</td>
+							<td style="width: 10%; border: 0px;">นาม : </td>
+							<td style="width: 60%; border: 0px;">' . $customer[0]->name . '</td>
+							<td style="width: 10%; border: 0px;">วันที่ : </td>
+							<td style="width: 20%; border: 0px;">15 มกราคม 2561</td>
 						</tr>
 						<tr>
-							<td>ที่อยู่</td>
-							<td colspan="3">' . $customer[0]->address . '</td>
+							<td style="border: 0px;">ที่อยู่</td>
+							<td colspan="3" style="border: 0px;">' . $customer[0]->address . '</td>
 						</tr>
 					</tbody>
 				</table>
@@ -283,7 +283,7 @@ class Deposit extends CI_Controller {
 		    	<table>
 					<tbody>
 						<tr>
-							<td rowspan="2"> </td>
+							<td rowspan="2"></td>
 							<td><center>เลขที่</center></td>
 						</tr>
 						<tr>
@@ -303,14 +303,14 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 10%;">นาม : </td>
-							<td style="width: 60%;">' . $customer[0]->name . '</td>
-							<td style="width: 10%;">วันที่ : </td>
-							<td style="width: 20%;">15 มกราคม 2561</td>
+							<td style="width: 10%; border: 0px;">นาม : </td>
+							<td style="width: 60%; border: 0px;">' . $customer[0]->name . '</td>
+							<td style="width: 10%; border: 0px;">วันที่ : </td>
+							<td style="width: 20%; border: 0px;">15 มกราคม 2561</td>
 						</tr>
 						<tr>
-							<td>ที่อยู่</td>
-							<td colspan="3">' . $customer[0]->address . '</td>
+							<td style="border: 0px;">ที่อยู่</td>
+							<td colspan="3" style="border: 0px;">' . $customer[0]->address . '</td>
 						</tr>
 					</tbody>
 				</table>
