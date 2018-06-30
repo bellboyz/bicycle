@@ -174,7 +174,7 @@
         <form method="post" action="stock/add-number" id="add-stock-form">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><center>สินค้าถูกลบแล้ว</center></h4>
+            <center><h4 class="modal-title" id="title">สินค้าถูกลบแล้ว</h4></center>
           </div>
           <div class="modal-body">
             <center><img src="/common/img/success.png" style="width: 20%; height: 20%;"></center>
@@ -229,6 +229,7 @@
             if(result == 1){
               $tbldata.ajax.reload();
               // alert('ลบสินค้าเรียบร้อย');
+              $('#title').text('ลบสินค้าเรียบร้อย');
               $('#modalSuccess').modal('show');
             }
           }
@@ -265,7 +266,9 @@
             success: function(result){
               // if(result == 1){
                 $tbldata.ajax.reload();
-                alert('แก้ไขสินค้าเรียบร้อย');
+                // alert('แก้ไขสินค้าเรียบร้อย');
+                $('#title').text('แก้ไขสินค้าเรียบร้อย');
+                $('#modalSuccess').modal('show');
                 document.getElementById("edit-form").reset();
               // }
             }
@@ -297,7 +300,9 @@
             success: function(result){
               // if(result == 1){
                 $tbldata.ajax.reload();
-                alert('เพิ่มจำนวนสินค้าเรียบร้อย');
+                // alert('เพิ่มจำนวนสินค้าเรียบร้อย');
+                $('#title').text('เพิ่มจำนวนสินค้าเรียบร้อย');
+                $('#modalSuccess').modal('show');
                 document.getElementById("add-stock-form").reset();
               // }
             }
