@@ -174,7 +174,7 @@
         <form method="post" action="stock/add-number" id="add-stock-form">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <center><h4 class="modal-title" id="title">สินค้าถูกลบแล้ว</h4></center>
+            <center><h4 class="modal-title" id="title"></h4></center>
           </div>
           <div class="modal-body">
             <center><img src="/common/img/success.png" style="width: 20%; height: 20%;"></center>
