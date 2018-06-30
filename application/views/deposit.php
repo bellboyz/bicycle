@@ -180,7 +180,8 @@
           type: 'post',
           data: $('form').serialize(),
           success: function(result){
-            if(result == 1){
+            if(result){
+              window.open(result, '_blank');
               window.location.reload();
             }
           }

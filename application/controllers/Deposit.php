@@ -27,7 +27,7 @@ class Deposit extends CI_Controller {
 		$price_per_number = $this->input->post('price_per_number');
 		$price = $this->input->post('price');
 
-		// $location = $this->generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price);
+		$location = $this->generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price);
 
 		for($i = 0; $i < sizeof($cus_id); $i++){
 			$data = array(
@@ -37,7 +37,7 @@ class Deposit extends CI_Controller {
 				'number' => $number[$i],
 				'price_per_number' => $price_per_number[$i],
 				'price' => $price[$i],
-				// 'location' => $location,
+				'location' => $location,
 				'created_date' => date('d/m/Y')
 			);
 
@@ -58,7 +58,7 @@ class Deposit extends CI_Controller {
 			}
 		}
 
-		if($result) echo true;
+		if($result) echo $location;
 		else echo false;
 	}
 
@@ -388,7 +388,7 @@ class Deposit extends CI_Controller {
 
 		$mpdf->WriteHTML($html);
 	    $mpdf->Output(getcwd() . '/common/file/deposit/'. $dep_id . '.pdf', 'F');
-	    $location = 'common/file/' . $dep_id .'.pdf';
+	    $location = 'common/file/deposit/' . $dep_id .'.pdf';
 	    return $location;
 	}
 }
