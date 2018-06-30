@@ -106,7 +106,6 @@ class Stock extends CI_Controller {
 
 	public function add_number(){
 		$id = $this->input->post('id');
-		$product = $this->input->post('product');
 		$number = $this->input->post('number');
 
 		$data = array(

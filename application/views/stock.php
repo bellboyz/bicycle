@@ -127,7 +127,7 @@
           </div>
           <div class="modal-body">
             <input type="hidden" id="add-stock-id" name="id">
-            <input id="add-stock-product" class="form-control" type="text" name="product" placeholder="ชื่อสินค้า" style="margin: 0 0 10px 0;" required>
+            <input id="add-stock-product" class="form-control" type="text" placeholder="ชื่อสินค้า" style="margin: 0 0 10px 0;" readonly>
             <input id="add-stock-number" class="form-control" type="number" step="any" min="0" name="number" placeholder="จำนวน" style="margin: 0 0 10px 0;" required>
           </div>
           <div class="modal-footer">
