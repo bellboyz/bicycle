@@ -23,7 +23,7 @@ class Billing_model extends CI_Model {
     }
 
     public function search_billing($cus_id, $start_date, $end_date){
-        $this->db->select('b.bill_id, sum(d.price) as total');
+        $this->db->select('b.bill_id, b.location, sum(d.price) as total');
         $this->db->from('billing b');
         $this->db->join('deposit d', 'b.bill_id = d.bill_id');
         $this->db->where('b.cus_id', $cus_id);

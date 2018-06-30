@@ -54,7 +54,7 @@ class Deposit_model extends CI_Model {
     }
 
     public function search_deposit($id, $cus_id, $start_date, $end_date, $check){
-        if($check == 'deposit') $this->db->select('dep_id, sum(price) as total');
+        if($check == 'deposit') $this->db->select('dep_id, location, sum(price) as total');
         $this->db->from('deposit');
         $this->db->where('cus_id', $cus_id);
         if($id != ''){

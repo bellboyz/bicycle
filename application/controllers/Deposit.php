@@ -225,7 +225,7 @@ class Deposit extends CI_Controller {
 							$order = $i + 1;
 							$html .= '<tr>';
 							$html .= '<td><center>' . $order . '</center></td>';
-							$html .= '<td><center>' . $stock[0]->product . '</center></td>';
+							$html .= '<td><center>' . $stock[0]->product . ' สี' . $stock[0]->color . '</center></td>';
 							$html .= '<td><center>' . number_format($price_per_number[$i]) . '</center></td>';
 							$html .= '<td><center>' . $number[$i] . ' ' . $stock[0]->unit . '</center></td>';
 							$html .= '<td><center>' . number_format($price[$i]) . '</center></td>';
@@ -332,7 +332,7 @@ class Deposit extends CI_Controller {
 						$order = $i + 1;
 						$html .= '<tr>';
 						$html .= '<td><center>' . $order . '</center></td>';
-						$html .= '<td><center>' . $stock[0]->product . '</center></td>';
+						$html .= '<td><center>' . $stock[0]->product . ' สี' . $stock[0]->color . '</center></td>';
 						$html .= '<td><center>' . number_format($price_per_number[$i]) . '</center></td>';
 						$html .= '<td><center>' . $number[$i] . ' ' . $stock[0]->unit . '</center></td>';
 						$html .= '<td><center>' . number_format($price[$i]) . '</center></td>';

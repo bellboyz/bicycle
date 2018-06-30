@@ -62,7 +62,7 @@
                     <td><center>' . $i . '</center></td>
                     <td><center>' . $bill->bill_id . '</center></td>
                     <td><center>' . $bill->total . '</center></td>
-                    <td><center><a href="#" target="_blank" class="btn btn-warning">ปริ้น</a></center></td>
+                    <td><center><a href="/' . $bill->location . '" target="_blank" class="btn btn-warning">ปริ้น</a></center></td>
                   </tr>
                   ';
                   $i++;
@@ -89,7 +89,7 @@
                     <td><center>' . $i . '</center></td>
                     <td><center>' . $dep->dep_id . '</center></td>
                     <td><center>' . $dep->total . '</center></td>
-                    <td><center><a href="#" target="_blank" class="btn btn-warning">ปริ้น</a></center></td>
+                    <td><center><a href="/' . $dep->location . '" target="_blank" class="btn btn-warning">ปริ้น</a></center></td>
                   </tr>
                   ';
                   $i++;
