@@ -149,7 +149,7 @@
         total += price;
 
         $('#fields').append(
-          '<div class="col-md-4" id="list_' + i +'" style="border: solid 2px; margin: 5px; padding: 5px;" product="' + product + '" color="' + color + '" unit="' + unit + '" id="' + stock_id + '" number="' + number_stock + '"' + '>' +
+          '<div class="col-md-4" id="list_' + i +'" style="border: solid 2px; margin: 5px; padding: 5px;" product="' + product + '" color="' + color + '" unit="' + unit + '" id="' + stock_id + '" number="' + number_stock + '"' + ' price="' + price + '">' +
           product + 'สี' + color + ' จำนวน ' + number + ' ' + unit + ' ราคาต่อหน่วย ' + price_per_unit + ' บาท <span style="color: red;">รวม ' + price + ' บาท</span><button id="delete-list" row="' + i + '" type="button" class="close" data-dismiss="modal">&times;</button>' + 
           '<input type="hidden" name="cus_id[]" value="' + cus_id + '">' +
           '<input type="hidden" name="stock_id[]" value="' + stock_id + '">' +
@@ -171,6 +171,9 @@
         var color = $('#list_' + row).attr('color');
         var unit = $('#list_' + row).attr('unit');
         var number = $('#list_' + row).attr('number');
+        var price = $('#list_' + row).attr('price');
+        total -= price;
+        $('[name="total"]').val(total);
         $('#list_' + row).remove();
         $('#stock').append('<option product="' + product + '" color="' + color + '" value="' + stock_id + '" unit="' + unit + '" number="' + number + '">' + product + ' สี' + color + ' (มีสต๊อก' + number + ' ' + unit + ')</option>');
       });
