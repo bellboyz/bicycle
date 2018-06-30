@@ -100,14 +100,11 @@ class Deposit extends CI_Controller {
 
 	private function generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price){
 		require_once getcwd() . '/common/plugins/mpdf1/mpdf.php';
-		$mpdf = new mPDF('th', 'A4-L', 14, 'thsarabun', 10, 10, 7, 7, 9, 9); // font-set = th, paper-size = A4, font-size = 14, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
+		$mpdf = new mPDF('th', 'A4-L', 12, 'thsarabun', 10, 10, 7, 7, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
 
-		// for($i = 0; $i < sizeof($cus_id); $i++){
-		// 	$stock = $this->Stock_model->get_stock($stock_id[$i]);
-		// 	$html .= '<p>customer id = ' . $cus_id[$i] . '</p>';
-		// 	$html .= '<p>ss' . $stock[0]->product . '</p>';
-		// 	$html .= '<br>';
-		// }
+		$customer = $this->Customer_model->get_customer($cus_id[0]);
+		$total1 = 0;
+		$total2 = 0;
 
 		$html = '';
 
@@ -183,7 +180,7 @@ class Deposit extends CI_Controller {
 							<td><center>เลขที่</center></td>
 						</tr>
 						<tr>
-							<td style="width: 30%;"><center>42</center></td>
+							<td style="width: 30%;"><center>' . $dep_id . '</center></td>
 						</tr>
 					</tbody>
 				</table>
@@ -199,14 +196,14 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 20%;">นาม : </td>
-							<td style="width: 30%;">1111111111</td>
-							<td style="width: 20%;">วันที่ : </td>
-							<td style="width: 30%;">15 มกราคม 2561</td>
+							<td style="width: 10%;">นาม : </td>
+							<td style="width: 60%;">' . $customer[0]->name . '</td>
+							<td style="width: 10%;">วันที่ : </td>
+							<td style="width: 20%;">15 มกราคม 2561</td>
 						</tr>
 						<tr>
 							<td>ที่อยู่</td>
-							<td colspan="3">-</td>
+							<td colspan="3">' . $customer[0]->address . '</td>
 						</tr>
 					</tbody>
 				</table>
@@ -221,24 +218,30 @@ class Deposit extends CI_Controller {
 							<th><center>จำนวนเงิน</center></th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td><center>1</center></td>
-							<td><center>asdasdasdasasdasd</center></td>
-							<td><center>123</center></td>
-							<td><center>123 asd</center></td>
-							<td><center>123123</center></td>
-						</tr>
+					<tbody>';
+						for($i = 0; $i < sizeof($stock_id); $i++){
+							$stock = $this->Stock_model->get_stock($stock_id[$i]);
+							$order = $i + 1;
+							$html .= '<tr>';
+							$html .= '<td><center>' . $order . '</center></td>';
+							$html .= '<td><center>' . $stock[0]->product . '</center></td>';
+							$html .= '<td><center>' . number_format($price_per_number[$i]) . '</center></td>';
+							$html .= '<td><center>' . $number[$i] . ' ' . $stock[0]->unit . '</center></td>';
+							$html .= '<td><center>' . number_format($price[$i]) . '</center></td>';
+							$html .= '</tr>';
+							$total1 += $price[$i];
+						}
+		$html .= '					
 					</tbody>
 				</table>
 
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 50%"></td>
-							<td>รวมเงิน</td>
-							<td>111111</td>
-							<td>บาท</td>
+							<td style="width: 50%; border: 0px"></td>
+							<td style="border: 0px;">รวมเงิน</td>
+							<td style="border: 0px;"><center>' . number_format($total1) . '</center></td>
+							<td style="border: 0px;">บาท</td>
 						</tr>
 					</tbody>
 				</table>
@@ -248,11 +251,7 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 15%;">หมายเหตุ : </td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
+							<td style="width: 20%; border: 0px;">หมายเหตุ : </td>
 							<td></td>
 						</tr>
 					</tbody>
@@ -261,7 +260,7 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 20%;">สถานที่จัดส่ง : </td>
+							<td style="width: 20%; border: 0px;">สถานที่จัดส่ง : </td>
 							<td></td>
 						</tr>
 					</tbody>
@@ -270,9 +269,9 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 75%"></td>
-							<td>ผู้รับของ : </td>
-							<td>111111</td>
+							<td style="width: 60%; border: 0px;"></td>
+							<td style="width: 15%;border: 0px;">ผู้รับของ : </td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
@@ -288,7 +287,7 @@ class Deposit extends CI_Controller {
 							<td><center>เลขที่</center></td>
 						</tr>
 						<tr>
-							<td style="width: 30%;"><center>42</center></td>
+							<td style="width: 30%;"><center>' . $dep_id . '</center></td>
 						</tr>
 					</tbody>
 				</table>
@@ -304,14 +303,14 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 20%;">นาม : </td>
-							<td style="width: 30%;">1111111111</td>
-							<td style="width: 20%;">วันที่ : </td>
-							<td style="width: 30%;">15 มกราคม 2561</td>
+							<td style="width: 10%;">นาม : </td>
+							<td style="width: 60%;">' . $customer[0]->name . '</td>
+							<td style="width: 10%;">วันที่ : </td>
+							<td style="width: 20%;">15 มกราคม 2561</td>
 						</tr>
 						<tr>
 							<td>ที่อยู่</td>
-							<td colspan="3">-</td>
+							<td colspan="3">' . $customer[0]->address . '</td>
 						</tr>
 					</tbody>
 				</table>
@@ -326,24 +325,30 @@ class Deposit extends CI_Controller {
 							<th><center>จำนวนเงิน</center></th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td><center>1</center></td>
-							<td><center>asdasdasdasasdasd</center></td>
-							<td><center>123</center></td>
-							<td><center>123 asd</center></td>
-							<td><center>123123</center></td>
-						</tr>
+					<tbody>';
+					for($i = 0; $i < sizeof($stock_id); $i++){
+						$stock = $this->Stock_model->get_stock($stock_id[$i]);
+						$order = $i + 1;
+						$html .= '<tr>';
+						$html .= '<td><center>' . $order . '</center></td>';
+						$html .= '<td><center>' . $stock[0]->product . '</center></td>';
+						$html .= '<td><center>' . number_format($price_per_number[$i]) . '</center></td>';
+						$html .= '<td><center>' . $number[$i] . ' ' . $stock[0]->unit . '</center></td>';
+						$html .= '<td><center>' . number_format($price[$i]) . '</center></td>';
+						$html .= '</tr>';
+						$total2 += $price[$i];
+					}
+		$html .= '
 					</tbody>
 				</table>
 
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 50%"></td>
-							<td>รวมเงิน</td>
-							<td>111111</td>
-							<td>บาท</td>
+							<td style="width: 50%; border: 0px"></td>
+							<td style="border: 0px;">รวมเงิน</td>
+							<td style="border: 0px;"><center>' . number_format($total2) . '</center></td>
+							<td style="border: 0px;">บาท</td>
 						</tr>
 					</tbody>
 				</table>
@@ -353,11 +358,7 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 15%;">หมายเหตุ : </td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
+							<td style="width: 20%; border: 0px;">หมายเหตุ : </td>
 							<td></td>
 						</tr>
 					</tbody>
@@ -366,7 +367,7 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 20%;">สถานที่จัดส่ง : </td>
+							<td style="width: 20%; border: 0px;">สถานที่จัดส่ง : </td>
 							<td></td>
 						</tr>
 					</tbody>
@@ -375,9 +376,9 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 75%"></td>
-							<td>ผู้รับของ : </td>
-							<td>111111</td>
+							<td style="width: 60%; border: 0px;"></td>
+							<td style="width: 15%;border: 0px;">ผู้รับของ : </td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
