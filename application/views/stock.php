@@ -100,7 +100,7 @@
             <input type="hidden" id="edit-id" name="id">
             <input id="edit-product" class="form-control" type="text" name="product" placeholder="ชื่อสินค้า" style="margin: 0 0 10px 0;" required>
             <input id="edit-color" class="form-control" type="text" name="color" placeholder="สี" style="margin: 0 0 10px 0;" required>
-            <!-- <input id="edit-number" class="form-control" type="text" name="number" placeholder="จำนวน" style="margin: 0 0 10px 0;" required> -->
+            <input id="edit-number" class="form-control" type="text" placeholder="จำนวน" style="margin: 0 0 10px 0;" readonly>
             <input id="edit-unit" class="form-control" type="text" name="unit" placeholder="หน่วย" style="margin: 0 0 10px 0;" required>
             <input id="edit-note" class="form-control" type="text" name="note" placeholder="หมายเหตุ" style="margin: 0 0 10px 0;" required>
           </div>
@@ -123,7 +123,7 @@
         <form method="post" action="stock/add-number" id="add-stock-form">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">แก้ไขรายการสินค้า</h4>
+            <h4 class="modal-title">เพิ่มจำนวนสินค้า</h4>
           </div>
           <div class="modal-body">
             <input type="hidden" id="add-stock-id" name="id">
@@ -193,7 +193,7 @@
                 $('#edit-id').val(data[0].id);
                 $('#edit-product').val(data[0].product);
                 $('#edit-color').val(data[0].color);
-                // $('#edit-number').val(data[0].number);
+                $('#edit-number').val(data[0].number);
                 $('#edit-unit').val(data[0].unit);
                 $('#edit-note').val(data[0].note);
                 $('#modalEdit').modal('show');
