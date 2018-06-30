@@ -26,8 +26,9 @@ class Deposit extends CI_Controller {
 		$number = $this->input->post('number');
 		$price_per_number = $this->input->post('price_per_number');
 		$price = $this->input->post('price');
+		$date = $this->input->post('date');
 
-		$location = $this->generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price);
+		$location = $this->generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price, $date);
 
 		for($i = 0; $i < sizeof($cus_id); $i++){
 			$data = array(
@@ -98,7 +99,7 @@ class Deposit extends CI_Controller {
 	    return $date . ' ' . $month . ' ' . $year;
 	}
 
-	private function generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price){
+	private function generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price, $date){
 		require_once getcwd() . '/common/plugins/mpdf1/mpdf.php';
 		$mpdf = new mPDF('th', 'A4-L', 12, 'thsarabun', 10, 10, 7, 7, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
 
@@ -199,7 +200,7 @@ class Deposit extends CI_Controller {
 							<td style="width: 10%; border: 0px;">นาม : </td>
 							<td style="width: 60%; border: 0px;">' . $customer[0]->name . '</td>
 							<td style="width: 10%; border: 0px;">วันที่ : </td>
-							<td style="width: 20%; border: 0px;">15 มกราคม 2561</td>
+							<td style="width: 20%; border: 0px;">' . $date . '</td>
 						</tr>
 						<tr>
 							<td style="border: 0px;">ที่อยู่</td>
