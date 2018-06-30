@@ -57,23 +57,25 @@ class Billing extends CI_Controller {
 
 		$location = $this->generate_pdf($bill_id, $cus_id, $date, explode(',', $deposit));
 
-		// $data = array(
-		// 	'bill_id' => $bill_id,
-		// 	'cus_id' => $cus_id,
-		// 	'location' => $location,
-		// 	'created_date' => date('d/m/Y')
-		// );
+		$data = array(
+			'bill_id' => $bill_id,
+			'cus_id' => $cus_id,
+			'location' => $location,
+			'created_date' => date('d/m/Y')
+		);
 
-		// $this->db->insert('billing', $data);
+		$this->db->insert('billing', $data);
 
-		// $deposit = explode(',', $deposit);
+		$deposit = explode(',', $deposit);
 
-		// for($i = 0; $i < sizeof($deposit); $i++){
-		// 	$update_bill = array(
-		// 		'bill_id' => $bill_id
-		// 	);
-		// 	$this->Deposit_model->update_bill($deposit[$i], $update_bill);
-		// }
+		for($i = 0; $i < sizeof($deposit); $i++){
+			$update_bill = array(
+				'bill_id' => $bill_id
+			);
+			$this->Deposit_model->update_bill($deposit[$i], $update_bill);
+		}
+
+		echo $location;
 	}
 
 	private function generate_Bill_ID($num){

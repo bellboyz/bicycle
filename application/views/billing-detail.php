@@ -127,6 +127,7 @@
           type: 'post',
           data: $('form').serialize(),
           success: function(result){
+            window.open('/' + result, '_blank');
             window.location.href = '/billing';
           }
         });
