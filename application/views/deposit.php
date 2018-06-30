@@ -86,6 +86,7 @@
             </div>
             <form id="fields" method="post" action="deposit/add">
               <input type="hidden" name="dep_id" value="<?= $dep_id; ?>">
+              <input type="hidden" name="date" value="<?= $date; ?>">
             </form>
           </div>
         </div>

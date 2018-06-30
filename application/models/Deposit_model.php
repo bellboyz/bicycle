@@ -22,6 +22,14 @@ class Deposit_model extends CI_Model {
         else return false;
     }
 
+    public function get_deposit_by_dep_id($dep_id){
+        $this->db->select('*');
+        $this->db->from('deposit');
+        $this->db->where('dep_id', $dep_id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function get_deposit($cus_id, $start_date, $end_date){
         $this->db->select('*');
         $this->db->from('deposit');

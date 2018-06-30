@@ -55,7 +55,7 @@ class Billing extends CI_Controller {
 		$end_date = $this->input->post('end_date');
 		$deposit = $this->input->post('deposit');
 
-		$location = $this->generate_pdf();
+		$location = $this->generate_pdf($bill_id, $cus_id, $date, explode(',', $deposit));
 
 		// $data = array(
 		// 	'bill_id' => $bill_id,
@@ -112,11 +112,11 @@ class Billing extends CI_Controller {
 		return $date . ' ' . $month . ' ' . $year;
 	}
 
-	private function generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price){
+	private function generate_pdf($bill_id, $cus_id, $date, $dep_id){
 		require_once getcwd() . '/common/plugins/mpdf1/mpdf.php';
 		$mpdf = new mPDF('th', 'A4-L', 14, 'thsarabun', 10, 10, 7, 7, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
 
-		// $customer = $this->Customer_model->get_customer($cus_id[0]);
+		$customer = $this->Customer_model->get_customer($cus_id);
 		$total = 0;
 
 		$html = '';
@@ -168,7 +168,7 @@ class Billing extends CI_Controller {
 					</tr>
 					<tr>
 						<td rowspan="1"></td>
-						<td rowspan="3" style="font-size: 26px;"><center><b>B25610418001</b></center></td>
+						<td rowspan="3" style="font-size: 26px;"><center><b>' . $bill_id . '</b></center></td>
 					</tr>
 					<tr>
 						<td rowspan="2">กรุงเทพมหานคร 10140</td>
@@ -183,13 +183,13 @@ class Billing extends CI_Controller {
 					<tbody>
 						<tr>
 							<td style="width: 10%; border: 0px;">นาม : </td>
-							<td style="width: 60%; border: 0px;">asd</td>
+							<td style="width: 60%; border: 0px;">' . $customer[0]->name . '</td>
 							<td style="width: 10%; border: 0px;">วันที่ : </td>
-							<td style="width: 20%; border: 0px;">15 มกราคม 2561</td>
+							<td style="width: 20%; border: 0px;">' . $date . '</td>
 						</tr>
 						<tr>
 							<td style="border: 0px;">ที่อยู่</td>
-							<td colspan="3" style="border: 0px;">ddddddddddddddddddddd</td>
+							<td colspan="3" style="border: 0px;">' . $customer[0]->address . '</td>
 						</tr>
 					</tbody>
 				</table>
@@ -203,13 +203,19 @@ class Billing extends CI_Controller {
 							<th><center>ราคา</center></th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
-							<td>1<center>
-							<td>DDDDDDDDDDDDDDD<center>
-							<td>123123123<center>
-							<td>123123<center>
-						</tr>
+					<tbody>';
+						for($i = 0; $i < sizeof($dep_id); $i++){
+							$deposit = $this->Deposit_model->get_deposit_by_dep_id($dep_id[$i]);
+							$order = $i + 1;
+							$html .= '<tr>';
+							$html .= '<td><center>' . $order . '</center></td>';
+							$html .= '<td><center>' . $deposit[0]->dep_id . '</center></td>';
+							$html .= '<td><center>' . $this->get_format_date($deposit[0]->created_date) . '</center></td>';
+							$html .= '<td><center>' . number_format($deposit[0]->price) . '</center></td>';
+							$html .= '</tr>';
+							$total += $deposit[0]->price;
+						}
+		$html .= '
 					</tbody>
 				</table>
 
@@ -218,7 +224,7 @@ class Billing extends CI_Controller {
 						<tr>
 							<td style="width: 50%; border: 0px"></td>
 							<td style="border: 0px;">รวมเงิน</td>
-							<td style="border: 0px;"><center>' . number_format($total1) . '</center></td>
+							<td style="border: 0px;"><center>' . number_format($total) . '</center></td>
 							<td style="border: 0px;">บาท</td>
 						</tr>
 					</tbody>
@@ -256,8 +262,8 @@ class Billing extends CI_Controller {
 			';
 
 		$mpdf->WriteHTML($html);
-		$mpdf->Output(getcwd() . '/common/file/bill/'. $dep_id . '.pdf', 'F');
-		$location = 'common/file/bill/' . $dep_id .'.pdf';
+		$mpdf->Output(getcwd() . '/common/file/bill/'. $bill_id . '.pdf', 'F');
+		$location = 'common/file/bill/' . $bill_id .'.pdf';
 		return $location;
 	}
 }
