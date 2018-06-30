@@ -140,6 +140,54 @@
     </div>
   </div>
 
+  <!-- Modal delete -->
+  <div class="modal fade" id="modalDelete" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <form method="post" action="stock/add-number" id="add-stock-form">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><center>ต้องการลบสินค้าหรือไม่ ?</center></h4>
+          </div>
+          <div class="modal-body">
+            <center><img src="/common/img/delete.png" style="width: 20%; height: 20%;"></center>
+            <input type="hidden" id="delete-id">
+          </div>
+          <div class="modal-footer">
+            <button id="delete-stock" class="btn btn-danger" data-dismiss="modal">ลบ</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modal success -->
+  <div class="modal fade" id="modalSuccess" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <form method="post" action="stock/add-number" id="add-stock-form">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><center>สินค้าถูกลบแล้ว</center></h4>
+          </div>
+          <div class="modal-body">
+            <center><img src="/common/img/success.png" style="width: 20%; height: 20%;"></center>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
   <?php include('include/jsfooter.php') ?>
   
   <script type="text/javascript">
@@ -167,6 +215,12 @@
 
       $('body').on('click', '.deleteAction', function(){
         var delete_id = $(this).attr('delete-id');
+          $('#delete-id').val(delete_id);
+          $('#modalDelete').modal('show');
+      });
+
+      $('body').on('click', '#delete-stock', function(){
+        var delete_id = $('#delete-id').val();
         $.ajax({
           url: 'stock/delete',
           type: 'post',
@@ -174,7 +228,8 @@
           success: function(result){
             if(result == 1){
               $tbldata.ajax.reload();
-              alert('ลบสินค้าเรียบร้อย');
+              // alert('ลบสินค้าเรียบร้อย');
+              $('#modalSuccess').modal('show');
             }
           }
         });
