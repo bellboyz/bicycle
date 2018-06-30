@@ -23,7 +23,7 @@ class Deposit_model extends CI_Model {
     }
 
     public function get_deposit($cus_id, $start_date, $end_date){
-        $this->db->select('dep_id, price, created_date');
+        $this->db->select('*');
         $this->db->from('deposit');
         $this->db->where('cus_id', $cus_id);
         if($start_date != '' && $end_date != ''){
@@ -35,7 +35,7 @@ class Deposit_model extends CI_Model {
         else if($start_date == '' && $end_date != ''){
             $this->db->where('created_date <=', $end_date);
         }
-        
+
         $query = $this->db->get();
         return $query->result();
     }

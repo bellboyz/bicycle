@@ -60,7 +60,7 @@
                   echo '
                   <tr>
                     <td><center>' . $i . '</center></td>
-                    <td><center>' . $dep->dep_id . '</center></td>
+                    <td><center><a href="/' . $dep->location . '" target="_blank">' . $dep->dep_id . '</a></center></td>
                     <td><center>' . $dep->created_date . '</center></td>
                     <td><center>' . number_format($dep->price) . '</center></td>
                   </tr>
