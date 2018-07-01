@@ -111,10 +111,10 @@
     }
 
     #picture{
-      background-image: url("common/img/animation-02.gif");
+      background-image: url("common/img/totoro.gif");
       background-repeat: no-repeat;
       background-position: 1100px 420px;
-      background-size: 450px 300px;
+      background-size: 250px 250px;
     } 
        
   </style>
