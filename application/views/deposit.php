@@ -137,9 +137,13 @@
         var number_stock = $('#stock').find('option:selected').attr('number');
         var number = $('#number').val();
         $('#stock').find('option:selected').remove();
+        $('#number').val('');
+        $('#stock').trigger('change');
 
         if($('#stock').has('option').length == 0){
           $('#add_list').attr('disabled', '');
+          $('#number').attr('disabled', '');
+          $('#price_per_unit').attr('disabled', '');
         }
 
         var price_per_unit = $('#price_per_unit').val();
