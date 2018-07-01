@@ -102,9 +102,9 @@
     </form>
 
     <?php if($search == false){ ?>
-    <button id="print" class="btn btn-primary" style="width: 100%">ปริ้นใวางบิล</button>
+    <button id="print" class="btn btn-primary" style="width: 100%">ปริ้นใบวางบิล</button>
     <?php } else { ?>
-    <button id="search_print" class="btn btn-primary" style="width: 100%">ปริ้นใวางบิล</button>      
+    <button id="search_print" class="btn btn-primary" style="width: 100%">ปริ้นใบวางบิล</button>      
     <?php } ?>
 
     <?php include('include/jsfooter.php') ?>
