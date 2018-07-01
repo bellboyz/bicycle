@@ -8,7 +8,9 @@ class Deposit_model extends CI_Model {
     }
 
     public function getNumRows(){
+        $dep_id_format = 'D' . date('Ym');
         $this->db->from('deposit');
+        $this->db->like('dep_id', $dep_id_format, 'after');
         $this->db->group_by('dep_id');
         $query = $this->db->get();
         return $query->num_rows();

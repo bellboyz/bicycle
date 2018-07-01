@@ -8,7 +8,9 @@ class Billing_model extends CI_Model {
     }
 
     public function getNumRows(){
+        $bill_id_format = 'B' . date('Ym');
         $this->db->from('billing');
+        $this->db->like('bill_id', $bill_id_format, 'after');
         $this->db->group_by('bill_id');
         $query = $this->db->get();
         return $query->num_rows();
