@@ -33,6 +33,22 @@ class Deposit_model extends CI_Model {
     }
 
     public function get_deposit($cus_id, $start_date, $end_date){
+        if($start_date){
+            $start_date = explode('/', $start_date);
+            $year = $start_date[2];
+            $month = $start_date[1];
+            $date = $start_date[0];
+            $start_date = $year . '-' . $month . '-' . $date;
+        }
+
+        if($end_date){
+            $end_date = explode('/', $end_date);
+            $year = $end_date[2];
+            $month = $end_date[1];
+            $date = $end_date[0];
+            $end_date = $year . '-' . $month . '-' . $date;
+        }
+
         $this->db->select('*');
         $this->db->from('deposit');
         $this->db->where('cus_id', $cus_id);
@@ -56,6 +72,22 @@ class Deposit_model extends CI_Model {
     }
 
     public function search_deposit($id, $cus_id, $start_date, $end_date, $check){
+        if($start_date){
+            $start_date = explode('/', $start_date);
+            $year = $start_date[2];
+            $month = $start_date[1];
+            $date = $start_date[0];
+            $start_date = $year . '-' . $month . '-' . $date;
+        }
+
+        if($end_date){
+            $end_date = explode('/', $end_date);
+            $year = $end_date[2];
+            $month = $end_date[1];
+            $date = $end_date[0];
+            $end_date = $year . '-' . $month . '-' . $date;
+        }
+
         if($check == 'deposit') $this->db->select('dep_id, location, sum(price) as total');
         $this->db->from('deposit');
         $this->db->where('cus_id', $cus_id);
@@ -78,6 +110,22 @@ class Deposit_model extends CI_Model {
     }
 
     public function get_report_deposit($stock_id, $start_date, $end_date){
+        if($start_date){
+            $start_date = explode('/', $start_date);
+            $year = $start_date[2];
+            $month = $start_date[1];
+            $date = $start_date[0];
+            $start_date = $year . '-' . $month . '-' . $date;
+        }
+
+        if($end_date){
+            $end_date = explode('/', $end_date);
+            $year = $end_date[2];
+            $month = $end_date[1];
+            $date = $end_date[0];
+            $end_date = $year . '-' . $month . '-' . $date;
+        }
+        
         $this->db->select('s.product, s.color, s.unit, sum(d.number) as number, sum(d.price) as price');
         $this->db->from('deposit d');
         $this->db->join('stock s', 'd.stock_id = s.id');

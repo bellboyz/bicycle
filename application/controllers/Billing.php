@@ -31,7 +31,7 @@ class Billing extends CI_Controller {
 		$customer = $this->Customer_model->get_customer($cus_id);
 
 		for($i = 0; $i < sizeof($result); $i++){
-			$result[$i]->created_date = $this->get_format_date($result[$i]->created_date);
+			$result[$i]->created_date = $this->get_format_date2($result[$i]->created_date);
 		}
 
 		$data = array(
@@ -96,6 +96,30 @@ class Billing extends CI_Controller {
 		$year = $data[2];
 		$month = $data[1];
 		$date = $data[0];
+
+		if ($month == '01') $month = 'มกราคม';
+		else if ($month == '02') $month = 'กุมภาพันธ์';
+		else if ($month == '03') $month = 'มีนาคม';
+		else if ($month == '04') $month = 'เมษายน';
+		else if ($month == '05') $month = 'พฤษภาคม';
+		else if ($month == '06') $month = 'มิถุนายน';
+		else if ($month == '07') $month = 'กรกฎาคม';
+		else if ($month == '08') $month = 'สิงหาคม';
+		else if ($month == '09') $month = 'กันยายน';
+		else if ($month == '10') $month = 'ตุลาคม';
+		else if ($month == '11') $month = 'พฤศจิกายน';
+		else if ($month == '12') $month = 'ธันวาคม';
+		else $month = 'undefined';
+
+		return $date . ' ' . $month . ' ' . $year;
+	}
+
+	private function get_format_date2($data){
+		$data = explode('-', $data);
+
+		$year = $data[0];
+		$month = $data[1];
+		$date = $data[2];
 
 		if ($month == '01') $month = 'มกราคม';
 		else if ($month == '02') $month = 'กุมภาพันธ์';

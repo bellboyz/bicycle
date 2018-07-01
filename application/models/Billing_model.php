@@ -25,6 +25,22 @@ class Billing_model extends CI_Model {
     }
 
     public function search_billing($cus_id, $start_date, $end_date){
+        if($start_date){
+            $start_date = explode('/', $start_date);
+            $year = $start_date[2];
+            $month = $start_date[1];
+            $date = $start_date[0];
+            $start_date = $year . '-' . $month . '-' . $date;
+        }
+
+        if($end_date){
+            $end_date = explode('/', $end_date);
+            $year = $end_date[2];
+            $month = $end_date[1];
+            $date = $end_date[0];
+            $end_date = $year . '-' . $month . '-' . $date;
+        }
+
         $this->db->select('b.bill_id, b.location, sum(d.price) as total');
         $this->db->from('billing b');
         $this->db->join('deposit d', 'b.bill_id = d.bill_id');
@@ -44,6 +60,22 @@ class Billing_model extends CI_Model {
     }
 
     public function get_report_billing($cus_id, $stock_id, $start_date, $end_date){
+        if($start_date){
+            $start_date = explode('/', $start_date);
+            $year = $start_date[2];
+            $month = $start_date[1];
+            $date = $start_date[0];
+            $start_date = $year . '-' . $month . '-' . $date;
+        }
+
+        if($end_date){
+            $end_date = explode('/', $end_date);
+            $year = $end_date[2];
+            $month = $end_date[1];
+            $date = $end_date[0];
+            $end_date = $year . '-' . $month . '-' . $date;
+        }
+
         $this->db->select('c.name, b.bill_id, b.created_date, SUM(d.price) as price');
         $this->db->from('billing b');
         $this->db->join('deposit d', 'd.bill_id = b.bill_id');
