@@ -39,7 +39,7 @@ class Deposit extends CI_Controller {
 				'price_per_number' => $price_per_number[$i],
 				'price' => $price[$i],
 				'location' => $location,
-				'created_date' => date('d/m/Y')
+				'created_date' => date('Y-m-d')
 			);
 
 			if($this->db->insert('deposit', $data)){

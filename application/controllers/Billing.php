@@ -61,7 +61,7 @@ class Billing extends CI_Controller {
 			'bill_id' => $bill_id,
 			'cus_id' => $cus_id,
 			'location' => $location,
-			'created_date' => date('d/m/Y')
+			'created_date' => date('Y-m-d')
 		);
 
 		$this->db->insert('billing', $data);
