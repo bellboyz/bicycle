@@ -3,11 +3,11 @@
 
 <style type="text/css">
   #picture{
-      background-image: url("common/img/customer.png");
-      background-repeat: no-repeat;
-      background-position: 1300px 500px;
-      background-size: 200px 200px;
-    } 
+    background-image: url("common/img/customer.png");
+    background-repeat: no-repeat;
+    background-position: 1300px 500px;
+    background-size: 200px 200px;
+  } 
 </style>
 
 <?php include('include/jscss.php') ?>
@@ -25,7 +25,7 @@
 
         <div class="row">
           <div class="text-center">
-            <button id="add-button" class="btn btn-info pull-right" style="margin-right: 15px;">เพิ่มลูกค้า</button>
+            <button id="add-button" class="btn btn-info pull-right" data-toggle="modal" data-target="#modalAdd" style="margin-right: 15px;">เพิ่มลูกค้า</button>
             <h1>รายชื่อลูกค้า</h1>
           </div>
 
@@ -65,12 +65,18 @@
             <h4 class="modal-title">เพิ่มรายการสินค้า</h4>
           </div>
           <div class="modal-body">
-            <input class="form-control" type="text" name="name" placeholder="ชื่อลูกค้า" style="margin: 0 0 10px 0;" required>
-            <input class="form-control" type="text" name="address" placeholder="ที่อยู่" style="margin: 0 0 10px 0;" required>
-            <input class="form-control" type="text" name="tel" placeholder="เบอร์โทรศัพท์" style="margin: 0 0 10px 0;" required>
+            <div class="form-group">
+              <input class="form-control" type="text" name="name" placeholder="ชื่อลูกค้า" style="margin: 0 0 10px 0;" required>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="address" placeholder="ที่อยู่" style="margin: 0 0 10px 0;" required>
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="tel" placeholder="เบอร์โทรศัพท์" style="margin: 0 0 10px 0;" required>
+            </div>
           </div>
           <div class="modal-footer">
-            <button id="add-customer" type="submit" class="btn btn-info" data-dismiss="modal">เพิ่มสินค้า</button>
+            <button id="add-customer" type="submit" class="btn btn-info">เพิ่มสินค้า</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
           </div>
         </form>
@@ -92,12 +98,18 @@
           </div>
           <div class="modal-body">
             <input type="hidden" id="edit-id" name="id">
-            <input id="edit-name" class="form-control" type="text" name="name" placeholder="ชื่อลูกค้า" style="margin: 0 0 10px 0;" required>
-            <input id="edit-address" class="form-control" type="text" name="address" placeholder="ที่อยู่" style="margin: 0 0 10px 0;" required>
-            <input id="edit-tel" class="form-control" type="text" name="tel" placeholder="เบอร์โทรศัพท์" style="margin: 0 0 10px 0;" required>
+            <div class="form-group">
+              <input id="edit-name" class="form-control" type="text" name="name" placeholder="ชื่อลูกค้า" style="margin: 0 0 10px 0;" required>
+            </div>
+            <div class="form-group">
+              <input id="edit-address" class="form-control" type="text" name="address" placeholder="ที่อยู่" style="margin: 0 0 10px 0;" required>
+            </div>
+            <div class="form-group">
+              <input id="edit-tel" class="form-control" type="text" name="tel" placeholder="เบอร์โทรศัพท์" style="margin: 0 0 10px 0;" required>
+            </div>
           </div>
           <div class="modal-footer">
-            <button id="edit-customer" type="submit" class="btn btn-info" data-dismiss="modal">แก้ไขสินค้า</button>
+            <button id="edit-customer" type="submit" class="btn btn-info">แก้ไขสินค้า</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
           </div>
         </form>
@@ -122,7 +134,7 @@
             <input type="hidden" id="delete-id">
           </div>
           <div class="modal-footer">
-            <button id="delete-stock" class="btn btn-danger" data-dismiss="modal">ลบ</button>
+            <button id="delete-stock" class="btn btn-danger">ลบ</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
           </div>
         </form>
@@ -160,20 +172,56 @@
     var $tbldata = null;
 
     $(document).ready(function(){
-      $('#add-button').click(function(){
-        $('#modalAdd').modal('show');
+      $('#modalAdd').on('hidden.bs.modal', function(){
+        $('#modalAdd').bootstrapValidator('resetForm', true);
+      });
+      $('#modalEdit').on('hidden.bs.modal', function(){
+        $('#modalEdit').bootstrapValidator('resetForm', true);
       });
 
-      $('#add-customer').click(function(){
+      $('[name="tel"]').keyup(function () {
+        var $elem = $(this);
+        $elem.val($elem.val().replace(/[^\d]+/g, ''));
+      });
+
+      $('#add-form').bootstrapValidator({
+        fields: {
+          name:{
+            validators:{
+              notEmpty:{
+                message: 'โปรดกรอกข้อมูล'
+              }
+            }
+          },
+          address:{
+            validators:{
+              notEmpty:{
+                message: 'โปรดกรอกข้อมูล'
+              }
+            }
+          },
+          tel:{
+            validators:{
+              notEmpty:{
+                message: 'โปรดกรอกข้อมูล'
+              }
+            }
+          }
+        }
+      })
+      .on('success.form.bv', function(e){
+        e.preventDefault();
         $.ajax({
           url: 'customer/add',
           type: 'post',
-          data: $('#add-form').serialize(),
+          data: $(e.target).serialize(),
           success: function(result){
             if(result == 1){
               $tbldata.ajax.reload();
-              alert('เพิ่มข้อมูลลูกค้าเรียบร้อย');
-              document.getElementById("add-form").reset();
+              $('#title').text('เพิ่มข้อมูลลูกค้าเรียบร้อย');
+              $('#modalSuccess').modal('show');
+              $('#add-form').bootstrapValidator('resetForm', true);
+              $('#modalAdd').modal('hide');
             }
           }
         });
@@ -202,72 +250,96 @@
         });
       });
 
-        // get data from id for edit
-        $('body').on('click', '.editAction', function(){
-          var edit_id = $(this).attr('edit-id');
-          $.ajax({
-            url: 'customer/edit',
-            type: 'post',
-            data: {id: edit_id},
-            success: function(result){
-              if(result){
-                var data = JSON.parse(result);
-                $('#edit-id').val(data[0].id);
-                $('#edit-name').val(data[0].name);
-                $('#edit-address').val(data[0].address);
-                $('#edit-tel').val(data[0].tel);
-                $('#modalEdit').modal('show');
-              }
+      // get data from id for edit
+      $('body').on('click', '.editAction', function(){
+        var edit_id = $(this).attr('edit-id');
+        $.ajax({
+          url: 'customer/edit',
+          type: 'post',
+          data: {id: edit_id},
+          success: function(result){
+            if(result){
+              var data = JSON.parse(result);
+              $('#edit-id').val(data[0].id);
+              $('#edit-name').val(data[0].name);
+              $('#edit-address').val(data[0].address);
+              $('#edit-tel').val(data[0].tel);
+              $('#modalEdit').modal('show');
             }
-          });
-        });
-
-        $('#edit-customer').click(function(){
-          $.ajax({
-            url: 'customer/update',
-            type: 'post',
-            data: $('#edit-form').serialize(),
-            success: function(result){
-              // if(result == 1){
-                $tbldata.ajax.reload();
-                // alert('แก้ไขข้อมูลลูกค้าเรียบร้อย');
-                $('#title').text('แก้ไขข้อมูลลูกค้าเรียบร้อย');
-                $('#modalSuccess').modal('show');
-                document.getElementById("edit-form").reset();
-              // }
-            }
-          });
-        });
-
-        $tbldata = $('#tbldata').DataTable({
-          'autoWidth': true,
-          'orderClasses': true,
-
-          'pagingType': 'full_numbers',
-          'serviceSide': true,
-          'ajax': {
-            'url': 'customer/table',
-            'type': 'POST'
-          },
-          'paging': true,
-          'pageLength': 30,
-          'aaSorting': [],
-          "columns": [
-          {"class": "text-center", 'data': 'name'},
-          {"class": "text-center", 'data': 'address'},
-          {"class": "text-center", 'data': 'tel'},
-          {"class": "text-center", 'data': 'action', "orderable": false, 'searchable': false}
-          ],
-
-          'drawCallback': function () {
-            initiate();
           }
         });
-
-        function initiate(){}
       });
-    </script>
 
-  </body>
+      $('#edit-form').bootstrapValidator({
+        fields: {
+          name:{
+            validators:{
+              notEmpty:{
+                message: 'โปรดกรอกข้อมูล'
+              }
+            }
+          },
+          address:{
+            validators:{
+              notEmpty:{
+                message: 'โปรดกรอกข้อมูล'
+              }
+            }
+          },
+          tel:{
+            validators:{
+              notEmpty:{
+                message: 'โปรดกรอกข้อมูล'
+              }
+            }
+          }
+        }
+      })
+      .on('success.form.bv', function(e){
+        e.preventDefault();
+        $.ajax({
+          url: 'customer/update',
+          type: 'post',
+          data: $(e.target).serialize(),
+          success: function(result){
+              $tbldata.ajax.reload();
+              $('#title').text('แก้ไขข้อมูลลูกค้าเรียบร้อย');
+              $('#modalSuccess').modal('show');
+              $('#edit-form').bootstrapValidator('resetForm', true);
+              $('#modalEdit').modal('hide');
+            }
+          });
+      });
 
-  </html>
+      $tbldata = $('#tbldata').DataTable({
+        'autoWidth': true,
+        'orderClasses': true,
+
+        'pagingType': 'full_numbers',
+        'serviceSide': true,
+        'ajax': {
+          'url': 'customer/table',
+          'type': 'POST'
+        },
+        'paging': true,
+        'pageLength': 30,
+        'aaSorting': [],
+        "columns": [
+        {"class": "text-center", 'data': 'name'},
+        {"class": "text-center", 'data': 'address'},
+        {"class": "text-center", 'data': 'tel'},
+        {"class": "text-center", 'data': 'action', "orderable": false, 'searchable': false}
+        ],
+
+        'drawCallback': function () {
+          initiate();
+        }
+      });
+
+      function initiate(){}
+    });
+  </script>
+
+</body>
+
+</html>

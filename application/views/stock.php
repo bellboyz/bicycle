@@ -219,6 +219,9 @@
       $('#modalEdit').on('hidden.bs.modal', function(){
         $('#modalEdit').bootstrapValidator('resetForm', true);
       });
+      $('#modalAddNumber').on('hidden.bs.modal', function(){
+        $('#modalAddNumber').bootstrapValidator('resetForm', true);
+      });
 
       $('#addform').bootstrapValidator({
         fields: {
