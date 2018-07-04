@@ -42,3 +42,4 @@
 <script src="/common/plugins/datatable/js/jquery.dataTables.js"></script>
 <script src="/common/js/select2.js"></script>
 <script src="/common/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="/common/js/bootstrapValidator.js"></script>

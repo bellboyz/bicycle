@@ -36,6 +36,7 @@
   <link rel="icon" href="/common/img/130276.png" type="image/gif" sizes="16x16">
   <link rel="stylesheet" type="text/css" href="/common/css/w3.css">
   <link href="/common/plugins/datatable/css/jquery.dataTables.css" rel="stylesheet">
+  <link href="/common/css/bootstrapValidator.css" rel="stylesheet">
   <!-- =======================================================
     Theme Name: NiceAdmin
     Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/

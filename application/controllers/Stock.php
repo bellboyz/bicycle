@@ -39,11 +39,11 @@ class Stock extends CI_Controller {
 	public function add(){
 		// print_r($_POST);
 
-		$product = $this->input->post('product');
-		$color = $this->input->post('color');
+		$product = $this->input->post('product_add');
+		$color = $this->input->post('color_add');
 		// $number = $this->input->post('number');
-		$unit = $this->input->post('unit');
-		$note = $this->input->post('note');
+		$unit = $this->input->post('unit_add');
+		$note = $this->input->post('note_add');
 
 		$insert_stock = array(
 			'product' => $product,
@@ -87,11 +87,11 @@ class Stock extends CI_Controller {
 
 	public function update(){
 		$id = $this->input->post('id');
-		$product = $this->input->post('product');
-		$color = $this->input->post('color');
+		$product = $this->input->post('product_edit');
+		$color = $this->input->post('color_edit');
 		// $number = $this->input->post('number');
-		$unit = $this->input->post('unit');
-		$note = $this->input->post('note');
+		$unit = $this->input->post('unit_edit');
+		$note = $this->input->post('note_edit');
 
 		$edit_stock = array(
 			'product' => $product,
@@ -102,6 +102,7 @@ class Stock extends CI_Controller {
 		);
 
 		$this->Stock_model->update($id, $edit_stock);
+		echo true;
 	}
 
 	public function add_number(){
