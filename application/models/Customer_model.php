@@ -42,4 +42,13 @@ class Customer_model extends CI_Model {
             return false;
         }
     }
+
+    public function check_name($name){
+        $this->db->select('name');
+        $this->db->from('customer');
+        $this->db->where('name', $name);
+        $query = $this->db->get();
+        if($query->num_rows() > 0) return FALSE;
+        else return TRUE;
+    }
 }

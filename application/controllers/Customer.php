@@ -92,4 +92,11 @@ class Customer extends CI_Controller {
 
 		$this->Customer_model->update($id, $edit_customer);
 	}
+
+	public function check_name(){
+		$name = $this->input->post('name');
+		$check = $this->Customer_model->check_name($name);
+		if($check === true) echo json_encode(array('valid' => TRUE));
+		else echo json_encode(array('valid' => FALSE));
+	}
 }

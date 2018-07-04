@@ -190,6 +190,12 @@
             validators:{
               notEmpty:{
                 message: 'โปรดกรอกข้อมูล'
+              },
+              remote: {
+                url: 'customer/check_name',
+                type: 'POST',
+                data: {},
+                message: 'ชื่อลูกค้าซ้ำ'
               }
             }
           },
