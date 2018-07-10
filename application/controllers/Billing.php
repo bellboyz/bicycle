@@ -140,10 +140,14 @@ class Billing extends CI_Controller {
 
 	private function generate_pdf($bill_id, $cus_id, $date, $dep_id){
 		require_once getcwd() . '/common/plugins/mpdf1/mpdf.php';
-		$mpdf = new mPDF('th', 'A4-L', 14, 'thsarabun', 10, 10, 7, 7, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
+		$mpdf = new mPDF('th', 'A4-L', 14, 'thsarabun', 15, 15, 10, 10, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
 
 		$customer = $this->Customer_model->get_customer($cus_id);
 		$total = 0;
+
+		$date = explode(' ', $date);
+		$year = $date[2] + 543;
+		$date = $date[0] . ' ' . $date[1] . ' ' . $year;
 
 		$html = '';
 

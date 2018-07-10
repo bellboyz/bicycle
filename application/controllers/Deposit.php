@@ -101,11 +101,15 @@ class Deposit extends CI_Controller {
 
 	private function generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price, $date){
 		require_once getcwd() . '/common/plugins/mpdf1/mpdf.php';
-		$mpdf = new mPDF('th', 'A4-L', 12, 'thsarabun', 10, 10, 7, 7, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
+		$mpdf = new mPDF('th', 'A4-L', 16, 'thsarabun', 15, 15, 10, 10, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
 
 		$customer = $this->Customer_model->get_customer($cus_id[0]);
 		$total1 = 0;
 		$total2 = 0;
+
+		$date = explode(' ', $date);
+		$year = $date[2] + 543;
+		$date = $date[0] . ' ' . $date[1] . ' ' . $year;
 
 		$html = '';
 
@@ -198,7 +202,7 @@ class Deposit extends CI_Controller {
 					<tbody>
 						<tr>
 							<td style="width: 10%; border: 0px;">นาม : </td>
-							<td style="width: 60%; border: 0px;">' . $customer[0]->name . '</td>
+							<td style="width: 40%; border: 0px;">' . $customer[0]->name . '</td>
 							<td style="width: 10%; border: 0px;">วันที่ : </td>
 							<td style="width: 20%; border: 0px;">' . $date . '</td>
 						</tr>
@@ -305,9 +309,9 @@ class Deposit extends CI_Controller {
 					<tbody>
 						<tr>
 							<td style="width: 10%; border: 0px;">นาม : </td>
-							<td style="width: 60%; border: 0px;">' . $customer[0]->name . '</td>
+							<td style="width: 40%; border: 0px;">' . $customer[0]->name . '</td>
 							<td style="width: 10%; border: 0px;">วันที่ : </td>
-							<td style="width: 20%; border: 0px;">15 มกราคม 2561</td>
+							<td style="width: 20%; border: 0px;">' . $date . '</td>
 						</tr>
 						<tr>
 							<td style="border: 0px;">ที่อยู่</td>
