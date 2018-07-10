@@ -72,7 +72,7 @@
               <input class="form-control" type="text" name="address" placeholder="ที่อยู่" style="margin: 0 0 10px 0;" required>
             </div>
             <div class="form-group">
-              <input class="form-control" type="text" name="tel" placeholder="เบอร์โทรศัพท์" style="margin: 0 0 10px 0;" required>
+              <input class="form-control" type="text" name="tel" placeholder="เบอร์โทรศัพท์" style="margin: 0 0 10px 0;">
             </div>
           </div>
           <div class="modal-footer">
@@ -105,7 +105,7 @@
               <input id="edit-address" class="form-control" type="text" name="address" placeholder="ที่อยู่" style="margin: 0 0 10px 0;" required>
             </div>
             <div class="form-group">
-              <input id="edit-tel" class="form-control" type="text" name="tel" placeholder="เบอร์โทรศัพท์" style="margin: 0 0 10px 0;" required>
+              <input id="edit-tel" class="form-control" type="text" name="tel" placeholder="เบอร์โทรศัพท์" style="margin: 0 0 10px 0;">
             </div>
           </div>
           <div class="modal-footer">
@@ -206,13 +206,13 @@
               }
             }
           },
-          tel:{
-            validators:{
-              notEmpty:{
-                message: 'โปรดกรอกข้อมูล'
-              }
-            }
-          }
+          // tel:{
+          //   validators:{
+          //     notEmpty:{
+          //       message: 'โปรดกรอกข้อมูล'
+          //     }
+          //   }
+          // }
         }
       })
       .on('success.form.bv', function(e){
@@ -292,13 +292,13 @@
               }
             }
           },
-          tel:{
-            validators:{
-              notEmpty:{
-                message: 'โปรดกรอกข้อมูล'
-              }
-            }
-          }
+          // tel:{
+          //   validators:{
+          //     notEmpty:{
+          //       message: 'โปรดกรอกข้อมูล'
+          //     }
+          //   }
+          // }
         }
       })
       .on('success.form.bv', function(e){
