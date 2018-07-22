@@ -117,7 +117,7 @@ class Billing extends CI_Controller {
 	private function get_format_date2($data){
 		$data = explode('-', $data);
 
-		$year = $data[0];
+		$year = $data[0] + 543;
 		$month = $data[1];
 		$date = $data[2];
 
@@ -240,7 +240,7 @@ class Billing extends CI_Controller {
 							$html .= '<tr>';
 							$html .= '<td><center>' . $order . '</center></td>';
 							$html .= '<td><center>' . $deposit[0]->dep_id . '</center></td>';
-							$html .= '<td><center>' . $this->get_format_date($deposit[0]->created_date) . '</center></td>';
+							$html .= '<td><center>' . $this->get_format_date2($deposit[0]->created_date) . '</center></td>';
 							$html .= '<td><center>' . number_format($deposit[0]->price) . '</center></td>';
 							$html .= '</tr>';
 							$total += $deposit[0]->price;
