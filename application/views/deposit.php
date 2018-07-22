@@ -164,7 +164,7 @@
           );
 
         $('[name="total"]').val(total);
-
+        $('#price_per_unit').val('');
         i++;
       });
 
