@@ -26,9 +26,9 @@
         <div class="row">
           <div class="text-center">
             <h1>ใบรับฝากสินค้า</h1>
-            <?= $date; ?>
+            <?php echo $date; ?>
             <br>
-            <?= $dep_id; ?>
+            <?php echo $dep_id; ?>
           </div>
         </div>
 
@@ -85,8 +85,8 @@
               </div>
             </div>
             <form id="fields" method="post" action="deposit/add">
-              <input type="hidden" name="dep_id" value="<?= $dep_id; ?>">
-              <input type="hidden" name="date" value="<?= $date; ?>">
+              <input type="hidden" name="dep_id" value="<?php echo $dep_id; ?>">
+              <input type="hidden" name="date" value="<?php echo $date; ?>">
             </form>
           </div>
         </div>

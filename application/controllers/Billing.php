@@ -36,7 +36,7 @@ class Billing extends CI_Controller {
 
 		$data = array(
 			'bill_id' => $bill_id,
-			'date' => $date,
+			'date' => $this->get_format_date($date),
 			'customer' => $customer,
 			'start_date' => $start_date,
 			'end_date' => $end_date,
@@ -93,7 +93,7 @@ class Billing extends CI_Controller {
 	private function get_format_date($data){
 		$data = explode('/', $data);
 
-		$year = $data[2];
+		$year = $data[2] + 543;
 		$month = $data[1];
 		$date = $data[0];
 
@@ -145,9 +145,9 @@ class Billing extends CI_Controller {
 		$customer = $this->Customer_model->get_customer($cus_id);
 		$total = 0;
 
-		$date = explode(' ', $date);
-		$year = $date[2] + 543;
-		$date = $date[0] . ' ' . $date[1] . ' ' . $year;
+		// $date = explode(' ', $date);
+		// $year = $date[2] + 543;
+		// $date = $date[0] . ' ' . $date[1] . ' ' . $year;
 
 		$html = '';
 

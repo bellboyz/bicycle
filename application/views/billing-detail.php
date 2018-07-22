@@ -31,7 +31,7 @@
               }
             ?>
             <br>
-            <?= $bill_id; ?>
+            <?php echo $bill_id; ?>
           </div>
           <br>
           <div class="col-md-12">
@@ -39,7 +39,7 @@
               <label style="margin-top: 5px;">นามลูกค้า</label>
             </div>
             <div class="col-md-10">
-              <input type="text" class="form-control" name="cus_name" value="<?= $customer[0]->name; ?>" readonly>
+              <input type="text" class="form-control" name="cus_name" value="<?php echo $customer[0]->name; ?>" readonly>
             </div>
             <br>
             <br>
@@ -74,8 +74,8 @@
             <br>
             <div class="pull-right">
               <label>รวม</label>
-              <input type="text" id="total" value="<?= number_format($total); ?>" readonly>
-              <input type="hidden" name="total" value="<?= $total; ?>">
+              <input type="text" id="total" value="<?php echo number_format($total); ?>" readonly>
+              <input type="hidden" name="total" value="<?php echo $total; ?>">
             </div>
 
           </div>
@@ -88,15 +88,15 @@
     <!-- container section start -->
 
     <form action="/billing/print_bill" method="post">
-      <input type="hidden" name="cus_id" value="<?= $customer[0]->id; ?>">
-      <input type="hidden" name="start_date" value="<?= $start_date; ?>">
-      <input type="hidden" name="end_date" value="<?= $end_date; ?>">
-      <input type="hidden" name="bill_id" value="<?= $bill_id; ?>">
+      <input type="hidden" name="cus_id" value="<?php echo $customer[0]->id; ?>">
+      <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
+      <input type="hidden" name="end_date" value="<?php echo $end_date; ?>">
+      <input type="hidden" name="bill_id" value="<?php echo $bill_id; ?>">
       <?php if($search == false){ ?>
-      <input type="hidden" name="date" value="<?= $date; ?>">
+      <input type="hidden" name="date" value="<?php echo $date; ?>">
       <?php } else { ?>
-      <input type="hidden" name="start_date" value="<?= $start_date; ?>">
-      <input type="hidden" name="end_date" value="<?= $end_date; ?>">
+      <input type="hidden" name="start_date" value="<?php echo $start_date; ?>">
+      <input type="hidden" name="end_date" value="<?php echo $end_date; ?>">
       <?php } ?>
       <input type="hidden" name="deposit">
     </form>

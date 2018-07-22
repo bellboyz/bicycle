@@ -78,7 +78,7 @@ class Deposit extends CI_Controller {
 	private function get_format_date($data){
 		$data = explode('/', $data);
 
-		$year = $data[2];
+		$year = $data[2] + 543;
 		$month = $data[1];
 		$date = $data[0];
 
@@ -107,9 +107,9 @@ class Deposit extends CI_Controller {
 		$total1 = 0;
 		$total2 = 0;
 
-		$date = explode(' ', $date);
-		$year = $date[2] + 543;
-		$date = $date[0] . ' ' . $date[1] . ' ' . $year;
+		// $date = explode(' ', $date);
+		// $year = $date[2] + 543;
+		// $date = $date[0] . ' ' . $date[1] . ' ' . $year;
 
 		$html = '';
 
