@@ -64,7 +64,7 @@ class Deposit extends CI_Controller {
 	}
 
 	private function generate_depID($num){
-		$id = sprintf('D' . date('Ymd') . '%05d', $num);
+		$id = sprintf('D' . date('Ymd') . '%03d', $num);
 		if($this->Deposit_model->check_depID($id) == true){
 			// duplicate
 			$num = $num + 1;

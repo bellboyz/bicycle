@@ -79,7 +79,7 @@ class Billing extends CI_Controller {
 	}
 
 	private function generate_Bill_ID($num){
-		$id = sprintf('B' . date('Ymd') . '%05d', $num);
+		$id = sprintf('B' . date('Ymd') . '%03d', $num);
 		if($this->Billing_model->check_depID($id) == true){
 			// duplicate
 			$num = $num + 1;
