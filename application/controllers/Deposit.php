@@ -128,7 +128,7 @@ class Deposit extends CI_Controller {
 	    	z-index: 1;
 	    	top: 0;
 	    	overflow-x: hidden;
-	    	padding-top: 20px;
+	    	padding-top: 10px;
 	    	// border: solid 1px;
 	    	
 	    }
@@ -162,12 +162,12 @@ class Deposit extends CI_Controller {
 
 		table td, table th {
 			border: 1px solid #ddd;
-			padding: 8px;
+			padding: 3px;
 		}
 
 		table th {
-			padding-top: 12px;
-			padding-bottom: 12px;
+			padding-top: 6px;
+			padding-bottom: 6px;
 		}
 
 	    </style>
@@ -229,7 +229,7 @@ class Deposit extends CI_Controller {
 							$order = $i + 1;
 							$html .= '<tr>';
 							$html .= '<td><center>' . $order . '</center></td>';
-							$html .= '<td><center>' . $stock[0]->product . ' สี' . $stock[0]->color . '</center></td>';
+							$html .= '<td>' . $stock[0]->product . ' สี' . $stock[0]->color . '</td>';
 							$html .= '<td><center>' . number_format($price_per_number[$i]) . '</center></td>';
 							$html .= '<td><center>' . $number[$i] . ' ' . $stock[0]->unit . '</center></td>';
 							$html .= '<td><center>' . number_format($price[$i]) . '</center></td>';
@@ -257,15 +257,6 @@ class Deposit extends CI_Controller {
 					<tbody>
 						<tr>
 							<td style="width: 20%; border: 0px;">หมายเหตุ : </td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-
-				<table>
-					<tbody>
-						<tr>
-							<td style="width: 20%; border: 0px;">สถานที่จัดส่ง : </td>
 							<td></td>
 						</tr>
 					</tbody>
@@ -336,7 +327,7 @@ class Deposit extends CI_Controller {
 						$order = $i + 1;
 						$html .= '<tr>';
 						$html .= '<td><center>' . $order . '</center></td>';
-						$html .= '<td><center>' . $stock[0]->product . ' สี' . $stock[0]->color . '</center></td>';
+						$html .= '<td>' . $stock[0]->product . ' สี' . $stock[0]->color . '</td>';
 						$html .= '<td><center>' . number_format($price_per_number[$i]) . '</center></td>';
 						$html .= '<td><center>' . $number[$i] . ' ' . $stock[0]->unit . '</center></td>';
 						$html .= '<td><center>' . number_format($price[$i]) . '</center></td>';
@@ -369,14 +360,6 @@ class Deposit extends CI_Controller {
 					</tbody>
 				</table>
 
-				<table>
-					<tbody>
-						<tr>
-							<td style="width: 20%; border: 0px;">สถานที่จัดส่ง : </td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
 
 				<table>
 					<tbody>

@@ -72,6 +72,13 @@
           <div class="col-md-10">
             <input type="number" step="any" id="price_per_unit" class="form-control" required>
           </div>
+
+          <div class="col-md-2">
+            <label>หมายเหตุ</label>
+          </div>
+          <div class="col-md-10">
+            <input type="text" step="any" id="price_per_unit" class="form-control" required>
+          </div>
         </div>
 
         <button class="btn btn-info" id="add_list">เพิ่ม</button>
