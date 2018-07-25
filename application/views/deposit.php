@@ -77,7 +77,7 @@
             <label>หมายเหตุ</label>
           </div>
           <div class="col-md-10">
-            <input type="text" step="any" id="price_per_unit" class="form-control" required>
+            <input type="text" id="note" class="form-control" required>
           </div>
         </div>
 
@@ -94,6 +94,7 @@
             <form id="fields" method="post" action="deposit/add">
               <input type="hidden" name="dep_id" value="<?php echo $dep_id; ?>">
               <input type="hidden" name="date" value="<?php echo $date; ?>">
+              <input type="hidden" name="note">
             </form>
           </div>
         </div>
@@ -134,6 +135,10 @@
       if($('#stock').has('option').length == 0){
         $('#add_list').attr('disabled', '');
       }
+
+      $('#note').keyup(function(){
+        $('[name="note"]').val($(this).val());
+      });
 
       $('#add_list').click(function(){
         var cus_id = $('#customer').val();
