@@ -5,7 +5,7 @@
 		margin: 0;
 		padding: 0;
 		background-color: #FAFAFA;
-		font: 12pt "Tahoma";
+		font: 16pt "Tahoma";
 	}
 	* {
 		box-sizing: border-box;
@@ -144,7 +144,7 @@
 					<?php if($name !== $bill->name) { ?>
 					<?php $name = $bill->name; ?>
 						<h3>นามลูกค้า : <?= $name; ?></h3>
-						<table id="table">
+						<table id="table" style="margin-top: 10px;">
 							<thead>
 								<tr>
 									<th><center>ลำดับ</center></th>
