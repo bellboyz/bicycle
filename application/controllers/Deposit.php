@@ -179,7 +179,7 @@ class Deposit extends CI_Controller {
 
 	    $html .= '
 	    <div class="split left">
-	    	<div style="height: 88%;">
+	    	<div style="height: 85%;">
 		    	<table>
 					<tbody>
 						<tr>
@@ -277,7 +277,7 @@ class Deposit extends CI_Controller {
 	    </div>
 
 	    <div class="split right">
-	    	<div style="height: 88%;">
+	    	<div style="height: 85%;">
 		    	<table>
 					<tbody>
 						<tr>
