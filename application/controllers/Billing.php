@@ -140,7 +140,7 @@ class Billing extends CI_Controller {
 
 	private function generate_pdf($bill_id, $cus_id, $date, $dep_id){
 		require_once getcwd() . '/common/plugins/mpdf1/mpdf.php';
-		$mpdf = new mPDF('th', 'A4-L', 14, 'thsarabun', 15, 15, 10, 10, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
+		$mpdf = new mPDF('th', 'A4', 14, 'thsarabun', 15, 15, 10, 10, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
 
 		$customer = $this->Customer_model->get_customer($cus_id);
 		$total = 0;
@@ -182,7 +182,7 @@ class Billing extends CI_Controller {
 		';
 
 		$html .= '
-			<div style="height: 80%;">
+			<div style="height: 85%;">
 				<table id="non-border">
 					<tr>
 						<td rowspan="2" style="width: 70%;">รุ่งกิจ จักรยาน จำกัด</td>
@@ -261,7 +261,7 @@ class Billing extends CI_Controller {
 				</table>
 			</div>
 
-			<div style="height: 15%;">
+			<div>
 				<table>
 					<tbody>
 						<tr>
