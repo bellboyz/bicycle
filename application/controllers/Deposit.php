@@ -176,7 +176,7 @@ class Deposit extends CI_Controller {
 	    ';
 
 	    $html .= '
-	    <div class="split left">
+	    <div class="split left" style="text-align: center;">
 	    	<div style="height: 75%;">
 		    	<table>
 					<tbody>
