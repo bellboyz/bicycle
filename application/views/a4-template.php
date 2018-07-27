@@ -139,35 +139,58 @@
 				</table>
 			<?php } else if($report === 'billing'){ ?>
 				<h1><center>รายงานยอดการสั่งซื้อ</center></h1>
-				<?php $name = ''; ?>
-				<?php foreach ($billing as $bill) { ?>
-					<?php if($name !== $bill->name) { ?>
-					<?php $name = $bill->name; ?>
-						<h3>นามลูกค้า : <?= $name; ?></h3>
-						<table id="table" style="margin-top: 10px;">
-							<thead>
-								<tr>
-									<th><center>ลำดับ</center></th>
-									<th><center>เลขที่บิล</center></th>
-									<th><center>ราคารวม</center></th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php $i = 1; ?>
-								<?php foreach ($billing as $b) { ?>
-									<?php if($name === $b->name){ ?>
-										<tr>
-											<td><center><?= $i; ?></center></td>
-											<td><center><?= $b->bill_id; ?></center></td>
-											<td><center><?= number_format($b->price); ?></center></td>
-										</tr>
-									<?php } ?>
-									<?php $i++; ?>
-								<?php } ?>
-							</tbody>
-						</table>
+				<?php $name = $billing[0]->name; ?>
+				<h3>นามลูกค้า : <?= $name; ?></h3>
+				<?php
+				if($start_date && $end_date) echo 'ตั้งแต่วันที่ ' . $start_date . ' ถึงวันที่ ' . $end_date;
+				else if($start_date && !$end_date) echo 'ตั้งแต่วันที่ ' . $start_date;
+				else if(!$start_date && $end_date) echo 'ถึงวันที่ ' . $end_date;
+				else echo 'ตั้งแต่เริ่มต้น';
+				?>
+				<table id="table" style="margin-top: 10px;">
+					<thead>
+						<tr>
+							<th><center>วันที่</center></th>
+							<th><center>รายการ</center></th>
+							<th><center>จำนวน</center></th>
+							<th><center>หน่วย</center></th>
+							<th><center>ราคาต่อหน่วย</center></th>
+							<th><center>ราคา</center></th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php $date = ''; ?>
+					<?php $i = 1; ?>
+					<?php $row = 1; ?>
+					<?php $total = 0; ?>
+					<?php foreach ($billing as $b) { ?>
+						<?php if($date != $b->created_date && $i != 1){ ?>
+							<tr>
+								<td colspan="4"><center>รวม</center></td>
+								<td><center><?php echo number_format($total); ?></center></td>
+								<td><center>บาท</center></td>
+							</tr>
+							<?php $total = 0; ?>
+						<?php } ?>
+						<?php $date = $b->created_date; ?>
+						<tr>
+							<td><center><?php echo $date; ?></center></td>
+							<td><center><?php echo $b->product . ' ' . $b->color; ?></center></td>
+							<td><center><?php echo $b->number; ?></center></td>
+							<td><center><?php echo $b->unit; ?></center></td>
+							<td><center><?php echo $b->price_per_number; ?></center></td>
+							<td><center><?php echo $b->price; ?></center></td>
+						</tr>
+						<?php $total += $b->price; ?>
+						<?php $i++; ?>
 					<?php } ?>
-				<?php } ?>
+					<tr>
+						<td colspan="3"><center>รวม</center></td>
+						<td><center><?php echo number_format($total); ?></center></td>
+						<td><center>บาท</center></td>
+					</tr>
+					</tbody>
+				</table>
 			<?php } ?>
 		</div>
 	</div>
