@@ -27,8 +27,9 @@ class Deposit extends CI_Controller {
 		$price_per_number = $this->input->post('price_per_number');
 		$price = $this->input->post('price');
 		$date = $this->input->post('date');
+		$note = $this->input->post('note');
 
-		$location = $this->generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price, $date);
+		$location = $this->generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price, $date, $note);
 
 		for($i = 0; $i < sizeof($cus_id); $i++){
 			$data = array(
@@ -39,6 +40,7 @@ class Deposit extends CI_Controller {
 				'price_per_number' => $price_per_number[$i],
 				'price' => $price[$i],
 				'location' => $location,
+				'note' => $note,
 				'created_date' => date('Y-m-d')
 			);
 
@@ -99,7 +101,7 @@ class Deposit extends CI_Controller {
 	    return $date . ' ' . $month . ' ' . $year;
 	}
 
-	private function generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price, $date){
+	private function generate_pdf($dep_id, $cus_id, $stock_id, $number, $price_per_number, $price, $date, $note){
 		require_once getcwd() . '/common/plugins/mpdf1/mpdf.php';
 		$mpdf = new mPDF('th', 'A4-L', 16, 'thsarabun', 15, 15, 10, 10, 9, 9); // font-set = th, paper-size = A4-L, font-size = 12, font = thsarabun, left = 10, right = 10, top = 7, bottom = 7
 
@@ -177,7 +179,7 @@ class Deposit extends CI_Controller {
 
 	    $html .= '
 	    <div class="split left" style="text-align: center;">
-	    	<div style="height: 75%;">
+	    	<div style="height: 87%;">
 		    	<table>
 					<tbody>
 						<tr>
@@ -252,12 +254,12 @@ class Deposit extends CI_Controller {
 				</table>
 
 			</div>
-			<div style="height: 20%;">
+			<div>
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 20%; border: 0px;">หมายเหตุ : </td>
-							<td></td>
+							<td style="width: 17%; border: 0px;">หมายเหตุ : </td>
+							<td>' . $note . '</td>
 						</tr>
 					</tbody>
 				</table>
@@ -265,7 +267,7 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 60%; border: 0px;"></td>
+							<td style="width: 40%; border: 0px;"></td>
 							<td style="width: 15%;border: 0px;">ผู้รับของ : </td>
 							<td></td>
 						</tr>
@@ -275,7 +277,7 @@ class Deposit extends CI_Controller {
 	    </div>
 
 	    <div class="split right">
-	    	<div style="height: 75%;">
+	    	<div style="height: 87%;">
 		    	<table>
 					<tbody>
 						<tr>
@@ -350,12 +352,12 @@ class Deposit extends CI_Controller {
 				</table>
 
 			</div>
-			<div style="height: 20%;">
+			<div>
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 20%; border: 0px;">หมายเหตุ : </td>
-							<td></td>
+							<td style="width: 17%; border: 0px;">หมายเหตุ : </td>
+							<td>' . $note . '</td>
 						</tr>
 					</tbody>
 				</table>
@@ -364,7 +366,7 @@ class Deposit extends CI_Controller {
 				<table>
 					<tbody>
 						<tr>
-							<td style="width: 60%; border: 0px;"></td>
+							<td style="width: 40%; border: 0px;"></td>
 							<td style="width: 15%;border: 0px;">ผู้รับของ : </td>
 							<td></td>
 						</tr>
